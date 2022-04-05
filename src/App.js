@@ -1,16 +1,21 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import DoubleButton from "./components/DoubleButton";
 import Footer from "./components/Footer";
-import RowButtons from "./components/RowButtons";
 import InputSectionInfo from "./components/InputSectionInfo";
+import RowButtons from "./components/RowButtons";
 import dogImage from "./images/dog-image.png";
-import { useState } from "react";
+import { updateForm } from "./redux";
 
-const NUMBER_OF_PAGES = 2;
+const NUMBER_OF_PAGES = 3;
 
 function App() {
+  const { firstName, lastName, email, phone, value, shelterId, useShelterId } = useSelector((state) => state.form);
+  const dispatch = useDispatch();
   const [currentPageId, setCurrentPageId] = useState(0);
 
+  // Helpers and handlers
   const getHiddenClass = (pageId) => (pageId !== currentPageId ? "page-hidden" : "");
 
   const goToPrevPage = () => {
@@ -24,6 +29,12 @@ function App() {
     }
   };
 
+  const handleInputChange = (e) => {
+    const payload = { [e.target.id]: e.target.value };
+    dispatch(updateForm(payload));
+  };
+
+  // Component
   return (
     <div className="App">
       <div className="container">
@@ -46,29 +57,63 @@ function App() {
                 <h1 className="main-heading">Potrebujeme od Vás zopár informácií</h1>
                 <InputSectionInfo title="O vás" />
                 <div className="input-wrapper">
-                  <label htmlFor="firstname" className="input-label">
+                  <label htmlFor="firstName" className="input-label">
                     Meno
                   </label>
-                  <input className="input" type="text" name="firstname" id="firstname" placeholder="Zadajte Vaše meno"></input>
+                  <input
+                    className="input"
+                    type="text"
+                    name="firstName"
+                    id="firstName"
+                    placeholder="Zadajte Vaše meno"
+                    onChange={handleInputChange}
+                    value={firstName}
+                  ></input>
                 </div>
                 <div className="input-wrapper">
-                  <label htmlFor="surname" className="input-label">
+                  <label htmlFor="lastName" className="input-label">
                     Priezvisko
                   </label>
-                  <input className="input" type="text" name="surname" id="surname" placeholder="Zadajte Vaše priezvisko"></input>
+                  <input
+                    className="input"
+                    type="text"
+                    name="lastName"
+                    id="lastName"
+                    placeholder="Zadajte Vaše priezvisko"
+                    value={lastName}
+                    onChange={handleInputChange}
+                  ></input>
                 </div>
                 <div className="input-wrapper">
                   <label htmlFor="email" className="input-label">
                     E-mailová adresa
                   </label>
-                  <input className="input" type="email" name="email" id="email" placeholder="Zadajte Váš e-mail"></input>
+                  <input
+                    className="input"
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Zadajte Váš e-mail"
+                    value={email}
+                    onChange={handleInputChange}
+                  ></input>
                 </div>
                 <div className="input-wrapper">
-                  <label htmlFor="number" className="input-label">
+                  <label htmlFor="phone" className="input-label">
                     Telefónne číslo
                   </label>
-                  <input className="input" type="number" name="number" id="number" placeholder="+421"></input>
+                  <input className="input" type="number" name="phone" id="phone" placeholder="+421" value={phone} onChange={handleInputChange}></input>
                 </div>
+              </div>
+              <div className={"page " + getHiddenClass(2)} id="page-2">
+                <h1 className="main-heading">Sumar</h1>
+                <h2>firstName: {firstName}</h2>
+                <h2>lastName: {lastName}</h2>
+                <h2>email: {email}</h2>
+                <h2>phone: {phone}</h2>
+                <h2>value: {value}</h2>
+                <h2>shelterId: {shelterId}</h2>
+                <h2>useShelterId: {`${useShelterId}`}</h2>
               </div>
               <div className="action-buttons-container">
                 <button className="action-button action-button-back" type="button" onClick={goToPrevPage}>
