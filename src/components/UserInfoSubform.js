@@ -1,15 +1,10 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateForm } from "../redux";
+import { useSelector } from "react-redux";
+import useForm from "../hooks/useForm";
 
 function UserInfoSubform() {
   const { firstName, lastName, email, phone } = useSelector((state) => state.form);
-  const dispatch = useDispatch();
-
-  const handleInputChange = (e) => {
-    const payload = { [e.target.id]: e.target.value };
-    dispatch(updateForm(payload));
-  };
+  const { handleInputChange } = useForm();
 
   return (
     <div>
