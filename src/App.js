@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import "./App.css";
 import DoubleButton from "./components/DoubleButton";
 import Footer from "./components/Footer";
 import InputSectionInfo from "./components/InputSectionInfo";
 import RowButtons from "./components/RowButtons";
+import UserInfoSubform from "./components/UserInfoSubform";
 import dogImage from "./images/dog-image.png";
-import { updateForm } from "./redux";
 
 const NUMBER_OF_PAGES = 3;
 
 function App() {
   const { firstName, lastName, email, phone, value, shelterId, useShelterId } = useSelector((state) => state.form);
-  const dispatch = useDispatch();
+
   const [currentPageId, setCurrentPageId] = useState(0);
 
   // Helpers and handlers
@@ -27,11 +27,6 @@ function App() {
     if (currentPageId < NUMBER_OF_PAGES - 1) {
       setCurrentPageId(currentPageId + 1);
     }
-  };
-
-  const handleInputChange = (e) => {
-    const payload = { [e.target.id]: e.target.value };
-    dispatch(updateForm(payload));
   };
 
   // Component
@@ -56,54 +51,7 @@ function App() {
               <div className={"page " + getHiddenClass(1)} id="page-2">
                 <h1 className="main-heading">Potrebujeme od Vás zopár informácií</h1>
                 <InputSectionInfo title="O vás" />
-                <div className="input-wrapper">
-                  <label htmlFor="firstName" className="input-label">
-                    Meno
-                  </label>
-                  <input
-                    className="input"
-                    type="text"
-                    name="firstName"
-                    id="firstName"
-                    placeholder="Zadajte Vaše meno"
-                    onChange={handleInputChange}
-                    value={firstName}
-                  ></input>
-                </div>
-                <div className="input-wrapper">
-                  <label htmlFor="lastName" className="input-label">
-                    Priezvisko
-                  </label>
-                  <input
-                    className="input"
-                    type="text"
-                    name="lastName"
-                    id="lastName"
-                    placeholder="Zadajte Vaše priezvisko"
-                    value={lastName}
-                    onChange={handleInputChange}
-                  ></input>
-                </div>
-                <div className="input-wrapper">
-                  <label htmlFor="email" className="input-label">
-                    E-mailová adresa
-                  </label>
-                  <input
-                    className="input"
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Zadajte Váš e-mail"
-                    value={email}
-                    onChange={handleInputChange}
-                  ></input>
-                </div>
-                <div className="input-wrapper">
-                  <label htmlFor="phone" className="input-label">
-                    Telefónne číslo
-                  </label>
-                  <input className="input" type="number" name="phone" id="phone" placeholder="+421" value={phone} onChange={handleInputChange}></input>
-                </div>
+                <UserInfoSubform />
               </div>
               <div className={"page " + getHiddenClass(2)} id="page-2">
                 <h1 className="main-heading">Sumar</h1>
