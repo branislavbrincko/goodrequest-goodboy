@@ -6,6 +6,7 @@ import DoubleButton from "./components/DoubleButton";
 import Footer from "./components/Footer";
 import InputSectionInfo from "./components/InputSectionInfo";
 import RowButtons from "./components/RowButtons";
+import SelectInput from "./components/SelectInput";
 import UserInfoSubform from "./components/UserInfoSubform";
 import dogImage from "./images/dog-image.png";
 
@@ -18,6 +19,7 @@ function App() {
 
   // Helpers and handlers
   const getHiddenClass = (pageId) => (pageId !== currentPageId ? "page-hidden" : "");
+  const additionalText = !useShelterId ? "Nepovinné" : "";
 
   // Component
   return (
@@ -29,9 +31,9 @@ function App() {
               <div className={"page " + getHiddenClass(0)} id="page-1">
                 <h1 className="main-heading">Vyberte si možnosť, ako chcete prispieť</h1>
                 <DoubleButton />
-                <InputSectionInfo title="O projekte" additionalText="Nepovinné" />
+                <InputSectionInfo title="O projekte" additionalText={additionalText} />
                 <div className="input-wrapper">
-                  <div style={{ height: "50px", border: "1px solid lightgrey", borderRadius: "8px" }}></div>
+                  <SelectInput />
                 </div>
                 <InputSectionInfo title="Suma, ktorou chcem prispieť" />
                 <div className="input-wrapper">
