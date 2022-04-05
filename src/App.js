@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import "./App.css";
+import ActionButtons from "./components/ActionButtons";
 import DoubleButton from "./components/DoubleButton";
 import Footer from "./components/Footer";
 import InputSectionInfo from "./components/InputSectionInfo";
@@ -8,26 +9,15 @@ import RowButtons from "./components/RowButtons";
 import UserInfoSubform from "./components/UserInfoSubform";
 import dogImage from "./images/dog-image.png";
 
-const NUMBER_OF_PAGES = 3;
-
 function App() {
+  // Global state
   const { firstName, lastName, email, phone, value, shelterId, useShelterId } = useSelector((state) => state.form);
 
+  // Local state
   const [currentPageId, setCurrentPageId] = useState(0);
 
   // Helpers and handlers
   const getHiddenClass = (pageId) => (pageId !== currentPageId ? "page-hidden" : "");
-
-  const goToPrevPage = () => {
-    if (currentPageId > 0) {
-      setCurrentPageId(currentPageId - 1);
-    }
-  };
-  const goToNextPage = () => {
-    if (currentPageId < NUMBER_OF_PAGES - 1) {
-      setCurrentPageId(currentPageId + 1);
-    }
-  };
 
   // Component
   return (
@@ -63,14 +53,7 @@ function App() {
                 <h2>shelterId: {shelterId}</h2>
                 <h2>useShelterId: {`${useShelterId}`}</h2>
               </div>
-              <div className="action-buttons-container">
-                <button className="action-button action-button-back" type="button" onClick={goToPrevPage}>
-                  Späť
-                </button>
-                <button className="action-button action-button-next" type="button" onClick={goToNextPage}>
-                  Pokračovať
-                </button>
-              </div>
+              <ActionButtons currentPageId={currentPageId} setCurrentPageId={setCurrentPageId} />
             </form>
           </div>
           <div className="column">
