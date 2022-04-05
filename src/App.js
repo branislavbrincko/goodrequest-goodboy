@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import ActionButtons from "./components/ActionButtons";
 import DoubleButton from "./components/DoubleButton";
@@ -9,9 +9,17 @@ import RowButtons from "./components/RowButtons";
 import SelectInput from "./components/SelectInput";
 import UserInfoSubform from "./components/UserInfoSubform";
 import dogImage from "./images/dog-image.png";
+import { fetchShelters } from "./redux";
 
 function App() {
-  // Global state
+  const dispatch = useDispatch();
+
+  // Fetch data from API
+  useEffect(() => {
+    dispatch(fetchShelters());
+  }, [dispatch]);
+
+  // Data from global state
   const { firstName, lastName, email, phone, value, shelterID, useShelterID } = useSelector((state) => state.form);
 
   // Local state

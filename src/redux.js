@@ -38,8 +38,42 @@ export const formSlice = createSlice({
 
 export const { updateForm, updateFormErrors } = formSlice.actions;
 
+export const globalSlice = createSlice({
+  name: "global",
+  initialState: {
+    shelters: [],
+    sheltersLoading: false,
+  },
+  reducers: {
+    setShelters: (state, action) => {
+      state.shelters = action.payload;
+    },
+    setSheltersLoading: (state, action) => {
+      state.sheltersLoading = action.payload;
+    },
+  },
+});
+
+export const { setShelters, setSheltersLoading } = globalSlice.actions;
+
+export function fetchShelters() {
+  return async (dispatch) => {
+    dispatch(setSheltersLoading(true));
+    try {
+      const response = await fetch("https://frontend-assignment-api.goodrequest.dev/api/v1/shelters");
+      const data = await response.json();
+      const { shelters } = data;
+      dispatch(setShelters(shelters));
+      dispatch(setSheltersLoading(false));
+    } catch (error) {
+      // dispatch(getSheltersFailure());
+    }
+  };
+}
+
 export const store = configureStore({
   reducer: {
     form: formSlice.reducer,
+    global: globalSlice.reducer,
   },
 });

@@ -3,6 +3,7 @@ import useForm from "../hooks/useForm";
 
 const SelectInput = () => {
   const { shelterID } = useSelector((state) => state.form);
+  const { shelters } = useSelector((state) => state.global);
   const { handleInputChange } = useForm({ shouldParseToInt: true });
 
   return (
@@ -14,9 +15,11 @@ const SelectInput = () => {
         <option disabled value="0">
           Vyberte útulok zo zoznamu
         </option>
-        <option value="1">Žilinský útulok o.z.</option>
-        <option value="2">HAFKÁČI</option>
-        <option value="3">Cerberus</option>
+        {shelters.map((shelter) => (
+          <option key={shelter.id} value={shelter.id}>
+            {shelter.name}
+          </option>
+        ))}
       </select>
     </>
   );
