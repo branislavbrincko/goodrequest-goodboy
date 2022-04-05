@@ -81,6 +81,22 @@ a {
 }
 
 /* 
+HELPERS
+*/
+
+.d-hidden {
+  display: none;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+/* 
 MAIN
 */
 
@@ -299,7 +315,6 @@ ACTION BUTTONS
 
 .action-buttons-container {
   display: flex;
-  justify-content: space-between;
   margin-top: 8rem;
 }
 
