@@ -1,6 +1,6 @@
 import React from "react";
 import { NUMBER_OF_STEPS } from "../constants";
-import { isFormStepValid } from "../helpers/validation";
+import { isFormStepValid } from "../helpers/formValidation";
 
 function ActionButtons({ currentStepId, setCurrentStepId }) {
   // Helpers and handlers

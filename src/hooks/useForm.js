@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { validateField } from "../helpers/validation";
+import { validateField } from "../helpers/formValidation";
 import { updateForm } from "../redux";
 
 function useForm(options = { shouldParseToInt: false }) {
