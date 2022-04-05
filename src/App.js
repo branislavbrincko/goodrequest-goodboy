@@ -18,7 +18,7 @@ function App() {
   const [currentPageId, setCurrentPageId] = useState(0);
 
   // Helpers and handlers
-  const getHiddenClass = (pageId) => (pageId !== currentPageId ? "page-hidden" : "");
+  const getActiveClass = (pageId) => (pageId === currentPageId ? "page-active" : "");
   const additionalText = !useShelterID ? "Nepovinné" : "";
 
   // Component
@@ -28,7 +28,7 @@ function App() {
         <div className="row">
           <div className="column">
             <form>
-              <div className={"page " + getHiddenClass(0)} id="page-1">
+              <div className={"page " + getActiveClass(0)} id="page-1">
                 <h1 className="main-heading">Vyberte si možnosť, ako chcete prispieť</h1>
                 <DoubleButton />
                 <InputSectionInfo title="O projekte" additionalText={additionalText} />
@@ -40,12 +40,12 @@ function App() {
                   <RowButtons />
                 </div>
               </div>
-              <div className={"page " + getHiddenClass(1)} id="page-2">
+              <div className={"page " + getActiveClass(1)} id="page-2">
                 <h1 className="main-heading">Potrebujeme od Vás zopár informácií</h1>
                 <InputSectionInfo title="O vás" />
                 <UserInfoSubform />
               </div>
-              <div className={"page " + getHiddenClass(2)} id="page-2">
+              <div className={"page " + getActiveClass(2)} id="page-3">
                 <h1 className="main-heading">Sumar</h1>
                 <h2>firstName: {firstName}</h2>
                 <h2>lastName: {lastName}</h2>

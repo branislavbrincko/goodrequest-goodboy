@@ -108,6 +108,12 @@ MAIN
   padding-right: 3rem;
 }
 
+@media only screen and (max-width: 1025px) {
+  .column:last-child {
+    display: none;
+  }
+}
+
 .main-heading {
   font-size: 4.6rem;
   margin-bottom: 3.25rem;
@@ -414,8 +420,12 @@ FOOTER
 PAGES
 */
 
-.page.page-hidden {
+.page {
   display: none;
+}
+
+.page.page-active {
+  display: block;
 }
 
 /* INPUTS */
