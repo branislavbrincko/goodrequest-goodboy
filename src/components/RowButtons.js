@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { validateField } from "../helpers/validation";
 import { updateForm } from "../redux";
 
 // Constants
@@ -13,10 +14,12 @@ const getActiveClass = (isActive) => (isActive ? " row-button-active" : "");
 // Components
 function InputButton({ usingCustomValue, setValue, setUsingCustomValue }) {
   const [prevCustomValue, setPrevCustomValue] = useState("");
+  const valueError = useSelector((state) => state.form.errors.value);
 
   const handleInputBtnChange = (e) => {
     setUsingCustomValue(true);
-    const value = e.target.value;
+    let value = e.target.value;
+    validateField("value", value);
     setValue(value);
     setPrevCustomValue(value);
   };
@@ -30,7 +33,10 @@ function InputButton({ usingCustomValue, setValue, setUsingCustomValue }) {
     setValue(prevCustomValue);
   };
 
-  const inputBtnClasses = usingCustomValue ? "row-button row-input-button row-button-active" : "row-button row-input-button";
+  const showError = valueError && usingCustomValue;
+  let inputBtnClasses = "row-button row-input-button";
+  if (usingCustomValue) inputBtnClasses += " row-button-active";
+  if (showError) inputBtnClasses += " row-button-error";
 
   return (
     <button className={inputBtnClasses} type="button" onClick={handleInputBtnClick}>
@@ -42,6 +48,7 @@ function InputButton({ usingCustomValue, setValue, setUsingCustomValue }) {
         value={prevCustomValue ? prevCustomValue : ""}
       ></input>
       <span>$</span>
+      {showError && <span className="row-input-button-error">{valueError} </span>}
     </button>
   );
 }

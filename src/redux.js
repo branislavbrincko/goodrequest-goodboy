@@ -13,6 +13,13 @@ export const formSlice = createSlice({
     shelterID: 0,
     // logic values
     useShelterID: true,
+    errors: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      value: "",
+    },
   },
   reducers: {
     updateForm: (state, action) => {
@@ -20,10 +27,15 @@ export const formSlice = createSlice({
         state[key] = action.payload[key];
       });
     },
+    updateFormErrors: (state, action) => {
+      Object.keys(action.payload).forEach((key) => {
+        state.errors[key] = action.payload[key];
+      });
+    },
   },
 });
 
-export const { updateForm } = formSlice.actions;
+export const { updateForm, updateFormErrors } = formSlice.actions;
 
 export const store = configureStore({
   reducer: {

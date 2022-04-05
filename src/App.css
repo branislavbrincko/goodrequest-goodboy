@@ -16,6 +16,8 @@ VARIABLES
   --primary-color-dark: hsl(22, 51%, 42%); /* from figma: #bb6b3d */
   --primay-color-light: #f3e2d9;
 
+  --error-color: rgb(225, 14, 14);
+
   --box-shadow-1: 0px 15px 20px 5px rgba(0, 0, 0, 0.15);
   --box-shadow-2: 0px 5px 20px 5px rgba(0, 0, 0, 0.1);
   --box-shadow-3: 0px 3px 7px -3px rgba(0, 0, 0, 0.15);
@@ -227,11 +229,16 @@ ROW BUTTONS
   font-weight: bold;
   /* font-weight: 800; */
   transition: all 200ms;
+  position: relative;
 }
 
 .row-button.row-button-active {
   color: var(--white);
   background-color: var(--primary-color);
+}
+
+.row-button.row-button-error {
+  border-color: var(--error-color);
 }
 
 .row-button:hover {
@@ -266,6 +273,18 @@ ROW BUTTONS
 
 .row-input-button-input:focus {
   outline: 1px solid var(--white);
+}
+
+.row-input-button-error {
+  display: block;
+  color: var(--error-color);
+  font-size: 1.4rem;
+  position: absolute;
+  bottom: -25px;
+  right: 0;
+  top: 120%;
+  width: 50rem;
+  text-align: right;
 }
 
 /* 
@@ -434,6 +453,18 @@ PAGES
   border-radius: 0.8rem;
 }
 
+.input-error {
+  border-color: var(--error-color);
+}
+
 .input:focus {
   outline: 1px solid var(--primary-color);
+}
+
+.input-error-message {
+  color: var(--error-color);
+  font-size: 1.6rem;
+  padding-left: 2.4rem;
+  margin-top: -0.8rem;
+  margin-bottom: 1rem;
 }
