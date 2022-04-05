@@ -420,11 +420,11 @@ FOOTER
 PAGES
 */
 
-.page {
+.step {
   display: none;
 }
 
-.page.page-active {
+.step.step-active {
   display: block;
 }
 

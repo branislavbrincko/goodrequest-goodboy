@@ -1,5 +1,5 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { DEFAULT_VALUES } from "./components/RowButtons";
+import { DEFAULT_VALUES } from "./constants";
 
 export const formSlice = createSlice({
   name: "form",
@@ -13,6 +13,7 @@ export const formSlice = createSlice({
     shelterID: 0,
     // logic values
     useShelterID: true,
+    useCustomValue: false,
     errors: {
       firstName: "",
       lastName: "",

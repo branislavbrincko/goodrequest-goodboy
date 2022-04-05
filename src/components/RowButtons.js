@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { DEFAULT_VALUES } from "../constants";
 import { validateField } from "../helpers/validation";
 import { updateForm } from "../redux";
-
-// Constants
-export const DEFAULT_VALUES = ["5", "10", "20", "30", "50", "100"];
 
 // Helpers
 const setValueToId = (value) => `value-${value}`;
@@ -12,12 +10,12 @@ const getValueFromId = (id) => id.split("-")[1];
 const getActiveClass = (isActive) => (isActive ? " row-button-active" : "");
 
 // Components
-function InputButton({ usingCustomValue, setValue, setUsingCustomValue }) {
+function InputButton({ setValue, useCustomValue, setUseCustomValue }) {
   const [prevCustomValue, setPrevCustomValue] = useState("");
   const valueError = useSelector((state) => state.form.errors.value);
 
   const handleInputBtnChange = (e) => {
-    setUsingCustomValue(true);
+    setUseCustomValue(true);
     let value = e.target.value;
     validateField("value", value);
     setValue(value);
@@ -25,17 +23,17 @@ function InputButton({ usingCustomValue, setValue, setUsingCustomValue }) {
   };
 
   const handleInputBtnFocus = () => {
-    setUsingCustomValue(true);
+    setUseCustomValue(true);
   };
 
   const handleInputBtnClick = () => {
-    setUsingCustomValue(true);
+    setUseCustomValue(true);
     setValue(prevCustomValue);
   };
 
-  const showError = valueError && usingCustomValue;
+  const showError = valueError && useCustomValue;
   let inputBtnClasses = "row-button row-input-button";
-  if (usingCustomValue) inputBtnClasses += " row-button-active";
+  if (useCustomValue) inputBtnClasses += " row-button-active";
   if (showError) inputBtnClasses += " row-button-error";
 
   return (
@@ -53,19 +51,19 @@ function InputButton({ usingCustomValue, setValue, setUsingCustomValue }) {
   );
 }
 
-function StandardButtons({ setValue, usingCustomValue, setUsingCustomValue }) {
+function StandardButtons({ setValue, useCustomValue, setUseCustomValue }) {
   const { value } = useSelector((state) => state.form);
 
   const handleRowButtonClick = (e) => {
-    setUsingCustomValue(false);
+    setUseCustomValue(false);
     const targetId = e.target.id;
     const newValue = getValueFromId(targetId);
     setValue(newValue);
   };
 
   const standardButtons = DEFAULT_VALUES.map((val) => {
-    const isActive = val === value && !usingCustomValue;
-    if (isActive && usingCustomValue) setUsingCustomValue(false);
+    const isActive = val === value && !useCustomValue;
+    if (isActive && useCustomValue) setUseCustomValue(false);
 
     return (
       <button key={val} className={"row-button" + getActiveClass(isActive)} id={setValueToId(val)} type="button" onClick={handleRowButtonClick}>
@@ -80,17 +78,15 @@ function StandardButtons({ setValue, usingCustomValue, setUsingCustomValue }) {
 // Main component
 function RowButtons() {
   const dispatch = useDispatch();
-  const [usingCustomValue, setUsingCustomValue] = useState(false);
+  const useCustomValue = useSelector((state) => state.form.useCustomValue);
 
-  const setValue = (newValue) => {
-    const payload = { value: newValue };
-    dispatch(updateForm(payload));
-  };
+  const setUseCustomValue = (newValue) => dispatch(updateForm({ useCustomValue: newValue }));
+  const setValue = (newValue) => dispatch(updateForm({ value: newValue }));
 
   return (
     <div className="row-buttons-container">
-      <StandardButtons setValue={setValue} usingCustomValue={usingCustomValue} setUsingCustomValue={setUsingCustomValue} />
-      <InputButton usingCustomValue={usingCustomValue} setValue={setValue} setUsingCustomValue={setUsingCustomValue} />
+      <StandardButtons setValue={setValue} usingCustomValue={useCustomValue} setUseCustomValue={setUseCustomValue} />
+      <InputButton useCustomValue={useCustomValue} setValue={setValue} setUseCustomValue={setUseCustomValue} />
     </div>
   );
 }
