@@ -10,9 +10,9 @@ export const formSlice = createSlice({
     email: "",
     phone: "",
     value: DEFAULT_VALUES[0],
-    shelterID: 1,
+    shelterID: 0,
     // logic values
-    useShelterId: true,
+    useShelterID: true,
   },
   reducers: {
     updateForm: (state, action) => {

@@ -12,14 +12,14 @@ import dogImage from "./images/dog-image.png";
 
 function App() {
   // Global state
-  const { firstName, lastName, email, phone, value, shelterId, useShelterId } = useSelector((state) => state.form);
+  const { firstName, lastName, email, phone, value, shelterID, useShelterID } = useSelector((state) => state.form);
 
   // Local state
   const [currentPageId, setCurrentPageId] = useState(0);
 
   // Helpers and handlers
   const getHiddenClass = (pageId) => (pageId !== currentPageId ? "page-hidden" : "");
-  const additionalText = !useShelterId ? "Nepovinné" : "";
+  const additionalText = !useShelterID ? "Nepovinné" : "";
 
   // Component
   return (
@@ -52,8 +52,8 @@ function App() {
                 <h2>email: {email}</h2>
                 <h2>phone: {phone}</h2>
                 <h2>value: {value}</h2>
-                <h2>shelterId: {shelterId}</h2>
-                <h2>useShelterId: {`${useShelterId}`}</h2>
+                <h2>shelterID: {shelterID}</h2>
+                <h2>useShelterID: {`${useShelterID}`}</h2>
               </div>
               <ActionButtons currentPageId={currentPageId} setCurrentPageId={setCurrentPageId} />
             </form>

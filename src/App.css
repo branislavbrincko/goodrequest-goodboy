@@ -198,6 +198,10 @@ INPUTS
   /* font-weight: 800; */
 }
 
+select.input:disabled {
+  cursor: not-allowed;
+}
+
 /* 
 ROW BUTTONS
 */

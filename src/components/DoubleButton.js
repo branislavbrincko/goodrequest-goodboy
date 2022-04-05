@@ -4,16 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateForm } from "../redux";
 
 function DoubleButton() {
-  const { useShelterId } = useSelector((state) => state.form);
+  const { useShelterID } = useSelector((state) => state.form);
   const dispatch = useDispatch();
 
   const getActiveClass = (btnId) => {
-    if (btnId === 0) return useShelterId ? "active" : "";
-    if (btnId === 1) return !useShelterId ? "active" : "";
+    if (btnId === 0) return useShelterID ? "active" : "";
+    if (btnId === 1) return !useShelterID ? "active" : "";
   };
 
   const handleClick = (btnId) => {
-    const payload = { useShelterId: btnId === 0 };
+    const payload = { useShelterID: btnId === 0 };
     dispatch(updateForm(payload));
   };
 

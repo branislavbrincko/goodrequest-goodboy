@@ -11,6 +11,9 @@ const SelectInput = () => {
         Útulok
       </label>
       <select className="input" name="shelterID" id="shelterID" placeholder="Vyberte útulok zo zoznamu" value={shelterID} onChange={handleInputChange}>
+        <option disabled value="0">
+          Vyberte útulok zo zoznamu
+        </option>
         <option value="1">Žilinský útulok o.z.</option>
         <option value="2">HAFKÁČI</option>
         <option value="3">Cerberus</option>

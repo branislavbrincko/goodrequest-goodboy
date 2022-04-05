@@ -27,7 +27,7 @@ function InputButton({ usingCustomValue, setValue, setUsingCustomValue }) {
 
   const handleInputBtnClick = () => {
     setUsingCustomValue(true);
-    if (prevCustomValue) setValue(prevCustomValue);
+    setValue(prevCustomValue);
   };
 
   const inputBtnClasses = usingCustomValue ? "row-button row-input-button row-button-active" : "row-button row-input-button";
