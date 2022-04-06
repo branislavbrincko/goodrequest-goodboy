@@ -27,7 +27,6 @@ function App() {
 
   // Helpers and handlers
   const getActiveClass = (stepId) => (stepId === currentStepId ? "step-active" : "");
-  const additionalText = !useShelterID ? "Nepovinné" : "";
 
   // Component
   return (
@@ -39,7 +38,7 @@ function App() {
               <div className={"step " + getActiveClass(0)} id="step-1">
                 <h1 className="main-heading">Vyberte si možnosť, ako chcete prispieť</h1>
                 <DoubleButton />
-                <InputSectionInfo title="O projekte" additionalText={additionalText} />
+                <InputSectionInfo title="O projekte" required={useShelterID} />
                 <div className="input-wrapper">
                   <SelectInput />
                 </div>
