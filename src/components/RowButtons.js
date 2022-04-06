@@ -26,9 +26,17 @@ function InputButton({ setValue, useCustomValue, setUseCustomValue }) {
     setUseCustomValue(true);
   };
 
-  const handleInputBtnClick = () => {
+  const handleInputBtnClick = (e) => {
     setUseCustomValue(true);
     setValue(prevCustomValue);
+    // if users clicks on button, but not inside the input, validation is run
+    // so the error message is shown, so the user notices to fill out the input
+    if (e.target.nodeName === "BUTTON") validateField("value", prevCustomValue);
+  };
+
+  const handleInputBtnBlur = (e) => {
+    let value = e.target.value;
+    validateField("value", value);
   };
 
   const showError = valueError && useCustomValue;
@@ -43,6 +51,7 @@ function InputButton({ setValue, useCustomValue, setUseCustomValue }) {
         className="row-input-button-input"
         onChange={handleInputBtnChange}
         onFocus={handleInputBtnFocus}
+        onBlur={handleInputBtnBlur}
         value={prevCustomValue ? prevCustomValue : ""}
       ></input>
       <span>$</span>
