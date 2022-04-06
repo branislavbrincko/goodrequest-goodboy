@@ -532,3 +532,16 @@ SUMMARY
 .summary-text {
   font-size: 1.6rem;
 }
+
+/* 
+CONSENT CHECKBOX
+*/
+
+.consent-container {
+  margin-top: 4.5rem;
+}
+
+.consent-label {
+  font-size: 1.6rem;
+  margin-left: 1.6rem;
+}
