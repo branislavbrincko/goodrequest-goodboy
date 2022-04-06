@@ -10,7 +10,7 @@ function InputErrorMessage({ fieldName }) {
 function UserInfoSubform() {
   const { firstName, lastName, email, phone, phonePrefix } = useSelector((state) => state.form);
   const errors = useSelector((state) => state.form.errors);
-  const { handleInputChange } = useForm();
+  const { handleInputChange, handleInputBlur } = useForm();
 
   const getErrorClass = (fieldName) => (errors[fieldName] ? " input-error" : "");
 
@@ -35,6 +35,7 @@ function UserInfoSubform() {
           id="firstName"
           placeholder="Zadajte Vaše meno"
           onChange={handleInputChange}
+          onBlur={handleInputBlur}
           value={firstName}
         ></input>
       </div>
@@ -49,8 +50,9 @@ function UserInfoSubform() {
           name="lastName"
           id="lastName"
           placeholder="Zadajte Vaše priezvisko"
-          value={lastName}
           onChange={handleInputChange}
+          onBlur={handleInputBlur}
+          value={lastName}
         ></input>
       </div>
       <InputErrorMessage fieldName="lastName" />
@@ -64,13 +66,14 @@ function UserInfoSubform() {
           name="email"
           id="email"
           placeholder="Zadajte Váš e-mail"
-          value={email}
           onChange={handleInputChange}
+          onBlur={handleInputBlur}
+          value={email}
         ></input>
       </div>
       <InputErrorMessage fieldName="email" />
       <div className="input-wrapper">
-        <select className="input-phone-country-select" name="phonePrefix" id="phonePrefix" value={phonePrefix} onChange={handleInputChange}>
+        <select className="input-phone-country-select" name="phonePrefix" id="phonePrefix" onChange={handleInputChange} value={phonePrefix}>
           <option value="+421">🇸🇰 &nbsp; +421</option>
           <option value="+420">🇨🇿 &nbsp; +420</option>
         </select>
@@ -82,8 +85,9 @@ function UserInfoSubform() {
           type="text"
           name="phone"
           id="phone"
-          value={phone}
           onChange={handlePhoneInputChange}
+          onBlur={handleInputBlur}
+          value={phone}
         ></input>
       </div>
       <InputErrorMessage fieldName="phone" />
