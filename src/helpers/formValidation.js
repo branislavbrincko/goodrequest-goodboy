@@ -7,8 +7,8 @@ let formValidationSchema = yup.object({
   value: yup.number().typeError("Zadajte sumu!").required("Zadajte sumu!").positive("Zadajte kladnú sumu!"),
 
   // 2nd step
-  firstName: yup.string().required("Meno je povinné pole!"),
-  lastName: yup.string().required("Priezvisko je povinné pole!"),
+  firstName: yup.string().trim().required("Meno je povinné pole!").min(2, "Meno musí mať aspoň 2 znaky!"),
+  lastName: yup.string().trim().required("Priezvisko je povinné pole!").min(2, "Priezvisko musí mať aspoň 2 znaky!"),
   email: yup.string().email("Email musí mať správny tvar!").required("Email je povinné pole!"),
   phone: yup
     .string()
