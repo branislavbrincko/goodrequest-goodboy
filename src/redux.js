@@ -11,9 +11,12 @@ export const formSlice = createSlice({
     phone: "",
     value: DEFAULT_VALUES[0],
     shelterID: 0,
+
     // logic values
     useShelterID: true,
     useCustomValue: false,
+
+    // form errors
     errors: {
       firstName: "",
       lastName: "",

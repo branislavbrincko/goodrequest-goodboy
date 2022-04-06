@@ -10,7 +10,10 @@ let formValidationSchema = yup.object({
   firstName: yup.string().required("Meno je povinné pole!"),
   lastName: yup.string().required("Priezvisko je povinné pole!"),
   email: yup.string().email("Email musí mať správny tvar!").required("Email je povinné pole!"),
-  phone: yup.string().required("Telefónne číslo je povinné pole!"),
+  phone: yup
+    .string()
+    .required("Telefónne číslo je povinné pole!")
+    .matches(/^[0-9]{3} [0-9]{3} [0-9]{3}$/, "Zadajte telefónne číslo v tvare xxx xxx xxx"),
 });
 
 const clearErrorField = (fieldName) => {

@@ -14,6 +14,14 @@ function UserInfoSubform() {
 
   const getErrorClass = (fieldName) => (errors[fieldName] ? " input-error" : "");
 
+  const handlePhoneInputChange = (e) => {
+    // input is of type string, but we don't want to allow user to enter any character
+    const inputValue = e.target.value;
+    const onlyNumbersAndEmptyCharacter = new RegExp("^[0-9 ]*$").test(inputValue);
+    if (!onlyNumbersAndEmptyCharacter) e.target.value = phone;
+    handleInputChange(e);
+  };
+
   return (
     <div>
       <div className="input-wrapper">
@@ -71,11 +79,11 @@ function UserInfoSubform() {
         </label>
         <input
           className={"input input-phone" + getErrorClass("phone")}
-          type="number"
+          type="text"
           name="phone"
           id="phone"
           value={phone}
-          onChange={handleInputChange}
+          onChange={handlePhoneInputChange}
         ></input>
       </div>
       <InputErrorMessage fieldName="phone" />
