@@ -8,7 +8,7 @@ function InputErrorMessage({ fieldName }) {
 }
 
 function UserInfoSubform() {
-  const { firstName, lastName, email, phone } = useSelector((state) => state.form);
+  const { firstName, lastName, email, phone, phonePrefix } = useSelector((state) => state.form);
   const errors = useSelector((state) => state.form.errors);
   const { handleInputChange } = useForm();
 
@@ -70,7 +70,7 @@ function UserInfoSubform() {
       </div>
       <InputErrorMessage fieldName="email" />
       <div className="input-wrapper">
-        <select className="input-phone-country-select" name="phoneCountry" id="phoneCountry">
+        <select className="input-phone-country-select" name="phonePrefix" id="phonePrefix" value={phonePrefix} onChange={handleInputChange}>
           <option value="+421">🇸🇰 &nbsp; +421</option>
           <option value="+420">🇨🇿 &nbsp; +420</option>
         </select>

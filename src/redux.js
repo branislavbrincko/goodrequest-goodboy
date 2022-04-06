@@ -9,6 +9,7 @@ export const formSlice = createSlice({
     lastName: "",
     email: "",
     phone: "",
+    phonePrefix: "+421",
     value: DEFAULT_VALUES[0],
     shelterID: 0,
 
