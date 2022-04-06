@@ -62,15 +62,18 @@ function UserInfoSubform() {
       </div>
       <InputErrorMessage fieldName="email" />
       <div className="input-wrapper">
+        <select className="input-phone-country-select" name="phoneCountry" id="phoneCountry">
+          <option value="+421">🇸🇰 &nbsp; +421</option>
+          <option value="+420">🇨🇿 &nbsp; +420</option>
+        </select>
         <label htmlFor="phone" className="input-label">
           Telefónne číslo
         </label>
         <input
-          className={"input" + getErrorClass("phone")}
+          className={"input input-phone" + getErrorClass("phone")}
           type="number"
           name="phone"
           id="phone"
-          placeholder="+421"
           value={phone}
           onChange={handleInputChange}
         ></input>
