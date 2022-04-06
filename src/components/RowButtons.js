@@ -54,7 +54,7 @@ function InputButton({ setValue, useCustomValue, setUseCustomValue }) {
         onBlur={handleInputBtnBlur}
         value={prevCustomValue ? prevCustomValue : ""}
       ></input>
-      <span>$</span>
+      <span>€</span>
       {showError && <span className="row-input-button-error">{valueError} </span>}
     </button>
   );
@@ -76,7 +76,7 @@ function StandardButtons({ setValue, useCustomValue, setUseCustomValue }) {
 
     return (
       <button key={val} className={"row-button" + getActiveClass(isActive)} id={setValueToId(val)} type="button" onClick={handleRowButtonClick}>
-        {val} $
+        {val} €
       </button>
     );
   });

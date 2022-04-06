@@ -12,6 +12,7 @@ export const formSlice = createSlice({
     phonePrefix: "+421",
     value: DEFAULT_VALUES[0],
     shelterID: 0,
+    consent: false,
 
     // logic values
     useShelterID: true,

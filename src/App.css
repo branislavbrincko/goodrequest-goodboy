@@ -514,3 +514,21 @@ PAGES
 .input-phone-country-select:focus {
   outline: 1px solid var(--primary-color);
 }
+
+/* 
+SUMMARY
+*/
+
+.summary-row {
+  margin-bottom: 2.2rem;
+}
+
+.summary-heading {
+  color: var(--black);
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.summary-text {
+  font-size: 1.6rem;
+}

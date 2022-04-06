@@ -7,12 +7,15 @@ import Footer from "./components/Footer";
 import InputSectionInfo from "./components/InputSectionInfo";
 import RowButtons from "./components/RowButtons";
 import SelectInput from "./components/SelectInput";
+import Summary from "./components/Summary";
 import UserInfoSubform from "./components/UserInfoSubform";
+import useForm from "./hooks/useForm";
 import dogImage from "./images/dog-image.png";
 import { fetchShelters } from "./redux";
 
 function App() {
   const dispatch = useDispatch();
+  const { handleInputChange } = useForm();
 
   // Fetch data from API
   useEffect(() => {
@@ -20,7 +23,7 @@ function App() {
   }, [dispatch]);
 
   // Data from global state
-  const { firstName, lastName, email, phone, value, shelterID, useShelterID } = useSelector((state) => state.form);
+  const { useShelterID, consent } = useSelector((state) => state.form);
 
   // Local state
   const [currentStepId, setCurrentStepId] = useState(0);
@@ -34,7 +37,7 @@ function App() {
       <div className="container">
         <div className="row">
           <div className="column">
-            <form>
+            <form className="form">
               <div className={"step " + getActiveClass(0)} id="step-1">
                 <h1 className="main-heading">Vyberte si možnosť, ako chcete prispieť</h1>
                 <DoubleButton />
@@ -53,14 +56,14 @@ function App() {
                 <UserInfoSubform />
               </div>
               <div className={"step " + getActiveClass(2)} id="step-3">
-                <h1 className="main-heading">Sumar</h1>
-                <h2>firstName: {firstName}</h2>
-                <h2>lastName: {lastName}</h2>
-                <h2>email: {email}</h2>
-                <h2>phone: {phone}</h2>
-                <h2>value: {value}</h2>
-                <h2>shelterID: {shelterID}</h2>
-                <h2>useShelterID: {`${useShelterID}`}</h2>
+                <h1 className="main-heading">Skontrolujte si zadané údaje</h1>
+                <Summary />
+                <div className="consent-container">
+                  <input type="checkbox" className="consent-input" id="consent" name="consent" checked={consent} onChange={handleInputChange} />
+                  <label htmlFor="consent" className="consent-label">
+                    Súhlasím so spracovaním mojich osobných údajov
+                  </label>
+                </div>
               </div>
               <ActionButtons currentStepId={currentStepId} setCurrentStepId={setCurrentStepId} />
             </form>

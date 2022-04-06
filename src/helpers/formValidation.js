@@ -48,7 +48,7 @@ export const isFormStepValid = (stepId) => {
 
   switch (stepId) {
     case 0:
-      if (useShelterID && shelterID == 0) return false;
+      if (useShelterID && shelterID === 0) return false;
       if (useCustomValue && !value) return false;
       return true;
 

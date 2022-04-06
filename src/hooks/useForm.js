@@ -8,7 +8,7 @@ function useForm(options = { shouldParseToInt: false }) {
 
   const handleInputChange = (e) => {
     const fieldName = e.target.id;
-    const value = e.target.value;
+    const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
 
     // update input field in store
     const valueForPayload = shouldParseToInt ? parseInt(value) : value;
