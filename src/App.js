@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import ActionButtons from "./components/ActionButtons";
+import Checkbox from "./components/Checkbox";
 import DoubleButton from "./components/DoubleButton";
 import Footer from "./components/Footer";
 import InputSectionInfo from "./components/InputSectionInfo";
@@ -59,10 +60,7 @@ function App() {
                 <h1 className="main-heading">Skontrolujte si zadané údaje</h1>
                 <Summary />
                 <div className="consent-container">
-                  <input type="checkbox" className="consent-input" id="consent" name="consent" checked={consent} onChange={handleInputChange} />
-                  <label htmlFor="consent" className="consent-label">
-                    Súhlasím so spracovaním mojich osobných údajov
-                  </label>
+                  <Checkbox name="consent" label="Súhlasím so spracovaním mojich osobných údajov" checked={consent} onChange={handleInputChange} />
                 </div>
               </div>
               <ActionButtons currentStepId={currentStepId} setCurrentStepId={setCurrentStepId} />
