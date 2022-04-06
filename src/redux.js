@@ -1,4 +1,5 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 import { DEFAULT_VALUES } from "./constants";
 
 export const formSlice = createSlice({
@@ -48,6 +49,8 @@ export const globalSlice = createSlice({
   initialState: {
     shelters: [],
     sheltersLoading: false,
+    formSubmitting: true,
+    formSubmissionError: null,
   },
   reducers: {
     setShelters: (state, action) => {
@@ -56,22 +59,27 @@ export const globalSlice = createSlice({
     setSheltersLoading: (state, action) => {
       state.sheltersLoading = action.payload;
     },
+    setFormSubmitting: (state, action) => {
+      state.formSubmitting = action.payload;
+    },
+    setFormSubmissionError: (state, action) => {
+      state.formSubmissionError = action.payload;
+    },
   },
 });
 
-export const { setShelters, setSheltersLoading } = globalSlice.actions;
+export const { setShelters, setSheltersLoading, setFormSubmitting, setFormSubmissionError } = globalSlice.actions;
 
-export function fetchShelters() {
+export function getShelters() {
   return async (dispatch) => {
     dispatch(setSheltersLoading(true));
     try {
-      const response = await fetch("https://frontend-assignment-api.goodrequest.dev/api/v1/shelters");
-      const data = await response.json();
-      const { shelters } = data;
+      const response = await axios.get("https://frontend-assignment-api.goodrequest.dev/api/v1/shelters");
+      const { shelters } = response.data;
       dispatch(setShelters(shelters));
       dispatch(setSheltersLoading(false));
     } catch (error) {
-      // dispatch(getSheltersFailure());
+      // TODO: handler error
     }
   };
 }
@@ -82,3 +90,37 @@ export const store = configureStore({
     global: globalSlice.reducer,
   },
 });
+
+export function createContribution() {
+  return async (dispatch) => {
+    dispatch(setFormSubmitting(true));
+
+    const { form } = store.getState();
+    const dataForSubmission = {
+      // required
+      firstName: form.firstName,
+      lastName: form.lastName,
+      email: form.email,
+      value: parseInt(form.value),
+      phone: `${form.phonePrefix} ${form.phone}`,
+      // optional
+      shelderID: form.shelterID === 0 ? null : form.shelterID,
+    };
+
+    try {
+      await axios.post("https://frontend-assignment-api.goodrequest.dev/api/v1/shelters/contribute", dataForSubmission);
+    } catch (error) {
+      dispatch(setFormSubmissionError(true));
+    }
+    dispatch(setFormSubmitting(false));
+  };
+}
+
+// function fakeRequest() {
+//   return new Promise((res, rej) => {
+//     setTimeout(() => {
+//       console.log("fake request done!");
+//       rej();
+//     }, 1000);
+//   });
+// }

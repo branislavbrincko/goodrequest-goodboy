@@ -44,7 +44,7 @@ export const validateField = (fieldName, value) => {
 
 export const isFormStepValid = (stepId) => {
   const { form } = store.getState();
-  const { errors, useShelterID, shelterID, useCustomValue, value, firstName, lastName, email, phone } = form;
+  const { errors, useShelterID, shelterID, useCustomValue, value, firstName, lastName, email, phone, consent } = form;
 
   switch (stepId) {
     case 0:
@@ -59,7 +59,7 @@ export const isFormStepValid = (stepId) => {
       return true;
 
     case 2:
-      return false;
+      return consent;
 
     default:
       return false;

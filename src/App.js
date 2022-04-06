@@ -6,13 +6,14 @@ import Checkbox from "./components/Checkbox";
 import DoubleButton from "./components/DoubleButton";
 import Footer from "./components/Footer";
 import InputSectionInfo from "./components/InputSectionInfo";
+import Loader from "./components/Loader";
 import RowButtons from "./components/RowButtons";
 import SelectInput from "./components/SelectInput";
 import Summary from "./components/Summary";
 import UserInfoSubform from "./components/UserInfoSubform";
 import useForm from "./hooks/useForm";
 import dogImage from "./images/dog-image.png";
-import { fetchShelters } from "./redux";
+import { getShelters } from "./redux";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,11 +21,12 @@ function App() {
 
   // Fetch data from API
   useEffect(() => {
-    dispatch(fetchShelters());
+    dispatch(getShelters());
   }, [dispatch]);
 
   // Data from global state
   const { useShelterID, consent } = useSelector((state) => state.form);
+  const { formSubmissionError, formSubmitting } = useSelector((state) => state.global);
 
   // Local state
   const [currentStepId, setCurrentStepId] = useState(0);
@@ -62,6 +64,23 @@ function App() {
                 <div className="consent-container">
                   <Checkbox name="consent" label="Súhlasím so spracovaním mojich osobných údajov" checked={consent} onChange={handleInputChange} />
                 </div>
+              </div>
+              <div className={"step " + getActiveClass(3)} id="step-4">
+                {formSubmitting ? (
+                  <>
+                    <Loader />
+                  </>
+                ) : formSubmissionError ? (
+                  <>
+                    <h1 className="main-heading">Chyba :( </h1>
+                    <div className="submission-result submission-result-error">Pri odosielaní formulára nastala chyba. Skúste to neskôr...</div>
+                  </>
+                ) : (
+                  <>
+                    <h1 className="main-heading">Hotovo!</h1>
+                    <div className="submission-result submission-result-success">Ďakujeme za Váš príspevok.</div>
+                  </>
+                )}
               </div>
               <ActionButtons currentStepId={currentStepId} setCurrentStepId={setCurrentStepId} />
             </form>

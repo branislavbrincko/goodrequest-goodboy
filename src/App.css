@@ -17,6 +17,7 @@ VARIABLES
   --primay-color-light: #f3e2d9;
 
   --error-color: rgb(225, 14, 14);
+  --success-color: rgb(41, 163, 51);
 
   --box-shadow-1: 0px 15px 20px 5px rgba(0, 0, 0, 0.15);
   --box-shadow-2: 0px 5px 20px 5px rgba(0, 0, 0, 0.1);
@@ -544,4 +545,59 @@ CONSENT CHECKBOX
 .consent-label {
   font-size: 1.6rem;
   margin-left: 1.6rem;
+}
+
+/* 
+SUBMISSION 
+*/
+
+.submission-result {
+  font-size: 1.6rem;
+}
+
+.submission-result-error {
+  color: var(--error-color);
+}
+
+.submission-result-success {
+  color: var(--success-color);
+}
+
+/* 
+LOADER
+*/
+
+.loader-container {
+  display: grid;
+  place-items: center;
+  height: 30rem;
+}
+
+.loader {
+  border: 12px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 12px solid var(--primary-color);
+  width: 80px;
+  height: 80px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

@@ -1,9 +1,13 @@
 import classNames from "classnames";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { NUMBER_OF_STEPS } from "../constants";
 import { isFormStepValid } from "../helpers/formValidation";
+import { createContribution } from "../redux";
 
 function ActionButtons({ currentStepId, setCurrentStepId }) {
+  const dispatch = useDispatch();
+
   // Functions
   const goToPrevStep = () => {
     if (currentStepId > 0) setCurrentStepId(currentStepId - 1);
@@ -11,6 +15,12 @@ function ActionButtons({ currentStepId, setCurrentStepId }) {
 
   const goToNextStep = () => {
     if (currentStepId < NUMBER_OF_STEPS - 1) setCurrentStepId(currentStepId + 1);
+  };
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    dispatch(createContribution());
+    goToNextStep();
   };
 
   const isFormStep = (stepId) => stepId === currentStepId;
@@ -36,7 +46,7 @@ function ActionButtons({ currentStepId, setCurrentStepId }) {
         Späť
       </button>
       {isFormStep(2) ? (
-        <button className="action-button action-button-next" type="submit" disabled={!canSubmit}>
+        <button className="action-button action-button-next" type="submit" onClick={submitForm} disabled={!canSubmit}>
           Odoslať formulár
         </button>
       ) : (
