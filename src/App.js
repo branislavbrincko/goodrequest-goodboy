@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import ActionButtons from "./components/ActionButtons";
@@ -42,9 +42,7 @@ function App() {
                 <h1 className="main-heading">Vyberte si možnosť, ako chcete prispieť</h1>
                 <DoubleButton />
                 <InputSectionInfo title="O projekte" required={useShelterID} />
-                <div className="input-wrapper">
-                  <SelectInput />
-                </div>
+                <SelectInput />
                 <InputSectionInfo title="Suma, ktorou chcem prispieť" />
                 <div className="input-wrapper">
                   <RowButtons />
