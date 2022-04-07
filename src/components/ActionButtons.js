@@ -1,25 +1,30 @@
 import classNames from "classnames";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NUMBER_OF_STEPS } from "../constants";
 import { isFormStepValid } from "../helpers/formValidation";
-import { createContribution, resetForm } from "../redux";
+import { createContribution, resetForm, setCurrentStep } from "../redux";
 
-function ActionButtons({ currentStepId, setCurrentStepId }) {
+function ActionButtons() {
   const dispatch = useDispatch();
+  const { currentStep } = useSelector((state) => state.global);
+
+  const setStep = (stepId) => {
+    dispatch(setCurrentStep(stepId));
+  };
 
   // Functions
   const goToPrevStep = () => {
-    if (currentStepId > 0) setCurrentStepId(currentStepId - 1);
+    if (currentStep > 0) setStep(currentStep - 1);
   };
 
   const goToNextStep = () => {
-    if (currentStepId < NUMBER_OF_STEPS - 1) setCurrentStepId(currentStepId + 1);
+    if (currentStep < NUMBER_OF_STEPS - 1) setStep(currentStep + 1);
   };
 
   const goToFirstStep = () => {
     dispatch(resetForm());
-    setCurrentStepId(0);
+    setStep(0);
   };
 
   const submitForm = (e) => {
@@ -28,7 +33,7 @@ function ActionButtons({ currentStepId, setCurrentStepId }) {
     goToNextStep();
   };
 
-  const isFormStep = (stepId) => stepId === currentStepId;
+  const isFormStep = (stepId) => stepId === currentStep;
 
   // Values
   const canContinue = (isFormStep(0) && isFormStepValid(0)) || (isFormStep(1) && isFormStepValid(1));

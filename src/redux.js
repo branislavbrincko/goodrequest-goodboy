@@ -2,6 +2,23 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { DEFAULT_VALUES } from "./constants";
 
+const LOCAL_STORAGE_FORM = "goodboy-form";
+const LOCAL_STORAGE_STEP = "goodboy-step";
+
+const formFromStorageStr = localStorage.getItem(LOCAL_STORAGE_FORM);
+const formFromStorage = formFromStorageStr && JSON.parse(formFromStorageStr);
+
+const stepFromStorageStr = localStorage.getItem(LOCAL_STORAGE_STEP);
+const stepFromStorage = stepFromStorageStr && JSON.parse(stepFromStorageStr);
+
+const updateLocalStorage = (itemName, value) => {
+  localStorage.setItem(itemName, JSON.stringify(value));
+};
+
+const clearLocalStorage = (itemName) => {
+  localStorage.removeItem(itemName);
+};
+
 const defaultFormValues = {
   // user form values
   firstName: "",
@@ -29,33 +46,45 @@ const defaultFormValues = {
 
 export const formSlice = createSlice({
   name: "form",
-  initialState: { ...defaultFormValues },
+  initialState: formFromStorage || defaultFormValues,
   reducers: {
     updateForm: (state, action) => {
       Object.keys(action.payload).forEach((key) => {
         state[key] = action.payload[key];
       });
+      updateLocalStorage(LOCAL_STORAGE_FORM, state);
     },
     updateFormErrors: (state, action) => {
       Object.keys(action.payload).forEach((key) => {
         state.errors[key] = action.payload[key];
       });
+      updateLocalStorage(LOCAL_STORAGE_FORM, state);
     },
-    resetForm: () => defaultFormValues,
+    resetForm: () => {
+      clearLocalStorage(LOCAL_STORAGE_FORM);
+      return defaultFormValues;
+    },
   },
 });
 
 export const { updateForm, updateFormErrors, resetForm } = formSlice.actions;
 
+const defaultGlobalValues = {
+  currentStep: stepFromStorage || 0,
+  shelters: [],
+  sheltersLoading: false,
+  formSubmitting: false,
+  formSubmissionError: null,
+};
+
 export const globalSlice = createSlice({
   name: "global",
-  initialState: {
-    shelters: [],
-    sheltersLoading: false,
-    formSubmitting: true,
-    formSubmissionError: null,
-  },
+  initialState: defaultGlobalValues,
   reducers: {
+    setCurrentStep: (state, action) => {
+      state.currentStep = action.payload;
+      updateLocalStorage(LOCAL_STORAGE_STEP, action.payload);
+    },
     setShelters: (state, action) => {
       state.shelters = action.payload;
     },
@@ -71,7 +100,7 @@ export const globalSlice = createSlice({
   },
 });
 
-export const { setShelters, setSheltersLoading, setFormSubmitting, setFormSubmissionError } = globalSlice.actions;
+export const { setCurrentStep, setShelters, setSheltersLoading, setFormSubmitting, setFormSubmissionError } = globalSlice.actions;
 
 export function getShelters() {
   return async (dispatch) => {

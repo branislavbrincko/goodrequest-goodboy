@@ -26,13 +26,10 @@ function App() {
 
   // Data from global state
   const { useShelterID, consent } = useSelector((state) => state.form);
-  const { formSubmissionError, formSubmitting } = useSelector((state) => state.global);
-
-  // Local state
-  const [currentStepId, setCurrentStepId] = useState(0);
+  const { currentStep, formSubmissionError, formSubmitting } = useSelector((state) => state.global);
 
   // Helpers and handlers
-  const getActiveClass = (stepId) => (stepId === currentStepId ? "step-active" : "");
+  const getActiveClass = (stepId) => (stepId === currentStep ? "step-active" : "");
 
   // Component
   return (
@@ -83,7 +80,7 @@ function App() {
                   </>
                 )}
               </div>
-              <ActionButtons currentStepId={currentStepId} setCurrentStepId={setCurrentStepId} />
+              <ActionButtons />
             </form>
           </div>
           <div className="column">
