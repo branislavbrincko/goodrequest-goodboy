@@ -1,6 +1,6 @@
-import { store } from "../store";
-import { form } from "../formDefinition";
-import { clearErrorField, setErrorField } from "../actions/formActions";
+import { store } from "../../store";
+import { form } from "../../formDefinition";
+import { clearErrorField, setErrorField } from "../../actions/formActions";
 
 export const isFormInvalid = () => {
   const errors = store.getState().form.errors;
