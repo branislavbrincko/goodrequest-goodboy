@@ -1,97 +1,50 @@
-import * as yup from "yup";
-import { store, updateFormErrors } from "../redux";
+import { store } from "../redux";
+import { form } from "../formDefinition";
+import { clearErrorField, setErrorField } from "../actions/formActions";
 
-// ---------------------
-// Yup validation schema
-// ---------------------
-
-let formValidationSchema = yup.object({
-  // 1st step
-  shelterID: yup.number(),
-  value: yup.number().typeError("Zadajte sumu!").required("Zadajte sumu!").positive("Zadajte kladnú sumu!"),
-  // 2nd step
-  firstName: yup.string().trim().required("Meno je povinné pole!").min(2, "Meno musí mať aspoň 2 znaky!").max(20, "Meno musí mať maximálne 20 znakov!"),
-  lastName: yup
-    .string()
-    .trim()
-    .required("Priezvisko je povinné pole!")
-    .min(2, "Priezvisko musí mať aspoň 2 znaky!")
-    .max(30, "Priezvisko musí mať maximálne 30 znakov!"),
-  email: yup.string().email("Email musí mať správny tvar!").required("Email je povinné pole!"),
-  phone: yup
-    .string()
-    .trim()
-    .matches(/^$|([0-9]{3} [0-9]{3} [0-9]{3})$/, "Zadajte telefónne číslo v tvare xxx xxx xxx"), // matches number in format "xxx xxx xxx" or empty string
-  phonePrefix: yup.string(),
-});
-
-// ----------------
-// Helper functions
-// ----------------
-
-const clearErrorField = (fieldName) => {
-  const payload = { [fieldName]: "" };
-  store.dispatch(updateFormErrors(payload));
+export const isFormInvalid = () => {
+  const errors = store.getState().form.errors;
+  // form is invalid if at least one of the errors message is set
+  return Object.values(errors).some((message) => !!message);
 };
 
-const setErrorField = (errorField, errorMessage) => {
-  const payload = { [errorField]: errorMessage };
-  store.dispatch(updateFormErrors(payload));
-};
+const validateSchema = (schema, fieldName, fieldValue) => {
+  if (!schema) return true; // if there is no schema, field needs no validation
 
-export const areValidationErrors = (errors, fields = null) => {
-  const keys = fields || Object.keys(errors);
-  const errorMessages = keys.map((key) => errors[key]);
-  return errorMessages.some((message) => !!message);
-};
-
-// --------------
-// Main functions
-// --------------
-
-/**
- * Function for validating one field of the form.
- */
-export const validateField = (fieldName, value) => {
   try {
-    const objectToValidate = { [fieldName]: value };
-    formValidationSchema.validateSyncAt(fieldName, objectToValidate);
+    schema.validateSync(fieldValue);
     clearErrorField(fieldName);
+    return true;
   } catch (error) {
     if (error.name === "ValidationError") {
-      setErrorField(error.path, error.message);
+      setErrorField(fieldName, error.message);
     } else {
-      throw new Error(error);
+      throw Error(error);
     }
+    return false;
   }
 };
 
-/**
- * Main logic for continuing between individual steps of the form.
- */
-export const isFormStepValid = (stepId) => {
-  const { form } = store.getState();
-  const { errors, useShelterID, shelterID, useCustomValue, value, firstName, lastName, email, phone, consent } = form;
+export const validateField = (fieldName, fieldValue) => {
+  const formState = store.getState().form;
+  const currentStepId = store.getState().global.currentStep;
+  const field = form[currentStepId].find((field) => field.name === fieldName);
 
-  switch (stepId) {
-    case 0:
-      if (useShelterID && shelterID === 0) return false;
-      if (useCustomValue && !value) return false;
-      return true;
+  const schema = typeof field.validationSchema === "function" ? field.validationSchema(formState) : field.validationSchema;
+  const fieldValid = validateSchema(schema, fieldName, fieldValue);
 
-    case 1:
-      // following fields must be filled out
-      if (!firstName || !lastName || !email) return false;
-      // following fields must have correct values
-      const stepFields = ["firstName", "lastName", "email", "phone"];
-      const areErrors = areValidationErrors(errors, stepFields);
-      if (areErrors) return false;
-      return true;
+  return fieldValid;
+};
 
-    case 2:
-      return consent;
+export const validateStep = (stepId) => {
+  let stepValid = true;
+  const stepFields = form[stepId];
 
-    default:
-      return false;
-  }
+  stepFields.forEach((field) => {
+    const fieldValue = store.getState().form[field.name];
+    const fieldValid = validateField(field.name, fieldValue);
+    stepValid = stepValid && fieldValid;
+  });
+
+  return stepValid;
 };

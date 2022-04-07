@@ -1,6 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { DEFAULT_VALUES } from "./constants";
+import { defaultFormValues } from "./formDefinition";
 
 const LOCAL_STORAGE_FORM = "goodboy-form";
 const LOCAL_STORAGE_STEP = "goodboy-step";
@@ -17,31 +17,6 @@ const updateLocalStorage = (itemName, value) => {
 
 const clearLocalStorage = (itemName) => {
   localStorage.removeItem(itemName);
-};
-
-const defaultFormValues = {
-  // user form values
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  phonePrefix: "+421",
-  value: DEFAULT_VALUES[0],
-  shelterID: 0,
-  consent: false,
-
-  // logic values
-  useShelterID: true,
-  useCustomValue: false,
-
-  // form errors
-  errors: {
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    value: "",
-  },
 };
 
 export const formSlice = createSlice({
@@ -75,6 +50,7 @@ const defaultGlobalValues = {
   sheltersLoading: false,
   formSubmitting: false,
   formSubmissionError: null,
+  nextButtonDisabled: false,
 };
 
 export const globalSlice = createSlice({
@@ -97,10 +73,13 @@ export const globalSlice = createSlice({
     setFormSubmissionError: (state, action) => {
       state.formSubmissionError = action.payload;
     },
+    setNextButtonDisabled: (state, action) => {
+      state.nextButtonDisabled = action.payload;
+    },
   },
 });
 
-export const { setCurrentStep, setShelters, setSheltersLoading, setFormSubmitting, setFormSubmissionError } = globalSlice.actions;
+export const { setCurrentStep, setShelters, setSheltersLoading, setFormSubmitting, setFormSubmissionError, setNextButtonDisabled } = globalSlice.actions;
 
 export function getShelters() {
   return async (dispatch) => {

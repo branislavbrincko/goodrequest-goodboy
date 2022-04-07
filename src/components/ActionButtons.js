@@ -1,25 +1,26 @@
 import classNames from "classnames";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NUMBER_OF_STEPS } from "../constants";
-import { isFormStepValid } from "../helpers/formValidation";
+import { validateStep, isFormInvalid } from "../helpers/formValidation";
 import { createContribution, resetForm, setCurrentStep } from "../redux";
 
 function ActionButtons() {
   const dispatch = useDispatch();
   const { currentStep } = useSelector((state) => state.global);
+  const { consent } = useSelector((state) => state.form);
 
+  // Functions
   const setStep = (stepId) => {
     dispatch(setCurrentStep(stepId));
   };
 
-  // Functions
   const goToPrevStep = () => {
     if (currentStep > 0) setStep(currentStep - 1);
   };
 
   const goToNextStep = () => {
-    if (currentStep < NUMBER_OF_STEPS - 1) setStep(currentStep + 1);
+    const stepValid = validateStep(currentStep);
+    if (stepValid) setStep(currentStep + 1);
   };
 
   const goToFirstStep = () => {
@@ -36,8 +37,8 @@ function ActionButtons() {
   const isFormStep = (stepId) => stepId === currentStep;
 
   // Values
-  const canContinue = (isFormStep(0) && isFormStepValid(0)) || (isFormStep(1) && isFormStepValid(1));
-  const canSubmit = isFormStep(2) && isFormStepValid(2);
+  const submitButtonDisabled = consent;
+  const nextButtonDisabled = isFormInvalid();
 
   // Classes
   const actionButtonsContainerClasses = classNames("action-buttons-container", {
@@ -62,13 +63,13 @@ function ActionButtons() {
   );
 
   const ButtonSubmit = () => (
-    <button className="action-button action-button-next" type="submit" onClick={submitForm} disabled={!canSubmit}>
+    <button className="action-button action-button-next" type="submit" onClick={submitForm} disabled={!submitButtonDisabled}>
       Odoslať formulár
     </button>
   );
 
   const ButtonNext = () => (
-    <button className="action-button action-button-next" type="button" onClick={goToNextStep} disabled={!canContinue}>
+    <button className="action-button action-button-next" type="button" onClick={goToNextStep} disabled={nextButtonDisabled}>
       Pokračovať
     </button>
   );
