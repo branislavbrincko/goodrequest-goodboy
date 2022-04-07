@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import DoubleButton from "../DoubleButton";
 import InputSectionInfo from "../InputSectionInfo";
-import RowButtons from "../RowButtons";
+import RowButtons from "../rowButtons/RowButtons";
 import SelectInput from "../SelectInput";
 import FormStep from "./FormStep";
 
