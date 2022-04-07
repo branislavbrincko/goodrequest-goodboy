@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { NUMBER_OF_STEPS } from "../constants";
 import { isFormStepValid } from "../helpers/formValidation";
-import { createContribution } from "../redux";
+import { createContribution, resetForm } from "../redux";
 
 function ActionButtons({ currentStepId, setCurrentStepId }) {
   const dispatch = useDispatch();
@@ -18,6 +18,7 @@ function ActionButtons({ currentStepId, setCurrentStepId }) {
   };
 
   const goToFirstStep = () => {
+    dispatch(resetForm());
     setCurrentStepId(0);
   };
 

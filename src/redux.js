@@ -2,32 +2,34 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { DEFAULT_VALUES } from "./constants";
 
-export const formSlice = createSlice({
-  name: "form",
-  initialState: {
-    // user form values
+const defaultFormValues = {
+  // user form values
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  phonePrefix: "+421",
+  value: DEFAULT_VALUES[0],
+  shelterID: 0,
+  consent: false,
+
+  // logic values
+  useShelterID: true,
+  useCustomValue: false,
+
+  // form errors
+  errors: {
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
-    phonePrefix: "+421",
-    value: DEFAULT_VALUES[0],
-    shelterID: 0,
-    consent: false,
-
-    // logic values
-    useShelterID: true,
-    useCustomValue: false,
-
-    // form errors
-    errors: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      value: "",
-    },
+    value: "",
   },
+};
+
+export const formSlice = createSlice({
+  name: "form",
+  initialState: { ...defaultFormValues },
   reducers: {
     updateForm: (state, action) => {
       Object.keys(action.payload).forEach((key) => {
@@ -39,10 +41,11 @@ export const formSlice = createSlice({
         state.errors[key] = action.payload[key];
       });
     },
+    resetForm: () => defaultFormValues,
   },
 });
 
-export const { updateForm, updateFormErrors } = formSlice.actions;
+export const { updateForm, updateFormErrors, resetForm } = formSlice.actions;
 
 export const globalSlice = createSlice({
   name: "global",
@@ -108,7 +111,8 @@ export function createContribution() {
     };
 
     try {
-      await axios.post("https://frontend-assignment-api.goodrequest.dev/api/v1/shelters/contribute", dataForSubmission);
+      // await axios.post("https://frontend-assignment-api.goodrequest.dev/api/v1/shelters/contribute", dataForSubmission);
+      await fakeRequest();
     } catch (error) {
       dispatch(setFormSubmissionError(true));
     }
@@ -116,11 +120,11 @@ export function createContribution() {
   };
 }
 
-// function fakeRequest() {
-//   return new Promise((res, rej) => {
-//     setTimeout(() => {
-//       console.log("fake request done!");
-//       rej();
-//     }, 1000);
-//   });
-// }
+function fakeRequest() {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      console.log("fake request done!");
+      res();
+    }, 1);
+  });
+}
