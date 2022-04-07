@@ -1,42 +1,32 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { defaultFormValues } from "./formDefinition";
-
-const LOCAL_STORAGE_FORM = "goodboy-form";
-const LOCAL_STORAGE_STEP = "goodboy-step";
-
-const formFromStorageStr = localStorage.getItem(LOCAL_STORAGE_FORM);
-const formFromStorage = formFromStorageStr && JSON.parse(formFromStorageStr);
-
-const stepFromStorageStr = localStorage.getItem(LOCAL_STORAGE_STEP);
-const stepFromStorage = stepFromStorageStr && JSON.parse(stepFromStorageStr);
-
-const updateLocalStorage = (itemName, value) => {
-  localStorage.setItem(itemName, JSON.stringify(value));
-};
-
-const clearLocalStorage = (itemName) => {
-  localStorage.removeItem(itemName);
-};
+import {
+  formValuesFromLocalStorage,
+  stepValueFromLocalStorage,
+  clearFormValuesFromLocalStorage,
+  updateFormValuesInLocalStorage,
+  updateStepInLocalStorage,
+} from "./helpers/localStorage";
 
 export const formSlice = createSlice({
   name: "form",
-  initialState: formFromStorage || defaultFormValues,
+  initialState: formValuesFromLocalStorage || defaultFormValues,
   reducers: {
     updateForm: (state, action) => {
       Object.keys(action.payload).forEach((key) => {
         state[key] = action.payload[key];
       });
-      updateLocalStorage(LOCAL_STORAGE_FORM, state);
+      updateFormValuesInLocalStorage(state);
     },
     updateFormErrors: (state, action) => {
       Object.keys(action.payload).forEach((key) => {
         state.errors[key] = action.payload[key];
       });
-      updateLocalStorage(LOCAL_STORAGE_FORM, state);
+      updateFormValuesInLocalStorage(state);
     },
     resetForm: () => {
-      clearLocalStorage(LOCAL_STORAGE_FORM);
+      clearFormValuesFromLocalStorage();
       return defaultFormValues;
     },
   },
@@ -45,7 +35,7 @@ export const formSlice = createSlice({
 export const { updateForm, updateFormErrors, resetForm } = formSlice.actions;
 
 const defaultGlobalValues = {
-  currentStep: stepFromStorage || 0,
+  currentStep: stepValueFromLocalStorage || 0,
   shelters: [],
   sheltersLoading: false,
   formSubmitting: false,
@@ -59,7 +49,7 @@ export const globalSlice = createSlice({
   reducers: {
     setCurrentStep: (state, action) => {
       state.currentStep = action.payload;
-      updateLocalStorage(LOCAL_STORAGE_STEP, action.payload);
+      updateStepInLocalStorage(action.payload);
     },
     setShelters: (state, action) => {
       state.shelters = action.payload;
@@ -85,8 +75,12 @@ export function getShelters() {
   return async (dispatch) => {
     dispatch(setSheltersLoading(true));
     try {
-      const response = await axios.get("https://frontend-assignment-api.goodrequest.dev/api/v1/shelters");
-      const { shelters } = response.data;
+      // const response = await axios.get("https://frontend-assignment-api.goodrequest.dev/api/v1/shelters");
+      // const { shelters } = response.data;
+      const shelters = [
+        { id: 1, name: "Utulok 1" },
+        { id: 2, name: "Utulok 2" },
+      ];
       dispatch(setShelters(shelters));
       dispatch(setSheltersLoading(false));
     } catch (error) {
@@ -119,7 +113,8 @@ export function createContribution() {
     };
 
     try {
-      await axios.post("https://frontend-assignment-api.goodrequest.dev/api/v1/shelters/contribute", dataForSubmission);
+      // await axios.post("https://frontend-assignment-api.goodrequest.dev/api/v1/shelters/contribute", dataForSubmission);
+      await fakeRequest();
     } catch (error) {
       dispatch(setFormSubmissionError(true));
     }
@@ -127,11 +122,11 @@ export function createContribution() {
   };
 }
 
-// function fakeRequest() {
-//   return new Promise((res, rej) => {
-//     setTimeout(() => {
-//       console.log("fake request done!");
-//       res();
-//     }, 1);
-//   });
-// }
+function fakeRequest() {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      console.log("fake request done!");
+      res();
+    }, 1000);
+  });
+}
