@@ -2,11 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useForm from "../hooks/useForm";
 import { updateForm } from "../redux";
-
-function InputErrorMessage({ fieldName }) {
-  const errors = useSelector((state) => state.form.errors);
-  return <div className="input-error-message"> {errors[fieldName]} </div>;
-}
+import InputErrorMessage from "./InputErrorMessage";
 
 function UserInfoSubform() {
   const dispatch = useDispatch();
