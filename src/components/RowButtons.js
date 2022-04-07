@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DEFAULT_VALUES } from "../formDefinition";
 import { validateField } from "../helpers/formValidation";
-import { updateForm } from "../redux";
+import { updateForm } from "../store";
 
 // Helpers
 const setValueToId = (value) => `value-${value}`;

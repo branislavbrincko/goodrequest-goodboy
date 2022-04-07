@@ -1,4 +1,4 @@
-import { store, updateFormErrors } from "../redux";
+import { store, updateFormErrors } from "../store";
 
 export const clearErrorField = (fieldName) => {
   const payload = { [fieldName]: "" };

@@ -2,7 +2,7 @@ import classNames from "classnames";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { validateStep, isFormInvalid } from "../helpers/formValidation";
-import { createContribution, resetForm, setCurrentStep } from "../redux";
+import { createContribution, resetForm, setCurrentStep } from "../store";
 
 function ActionButtons() {
   const dispatch = useDispatch();

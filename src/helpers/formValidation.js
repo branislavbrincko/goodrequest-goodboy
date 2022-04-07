@@ -1,4 +1,4 @@
-import { store } from "../redux";
+import { store } from "../store";
 import { form } from "../formDefinition";
 import { clearErrorField, setErrorField } from "../actions/formActions";
 

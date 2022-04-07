@@ -13,7 +13,7 @@ import Summary from "./components/Summary";
 import UserInfoSubform from "./components/UserInfoSubform";
 import useForm from "./hooks/useForm";
 import dogImage from "./images/dog-image.png";
-import { getShelters } from "./redux";
+import { getShelters } from "./store";
 
 function App() {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import { ReactComponent as WalletIcon } from "../images/WalletIcon.svg";
 import { ReactComponent as PawIcon } from "../images/PawIcon.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { updateForm } from "../redux";
+import { updateForm } from "../store";
 
 function DoubleButton() {
   const { useShelterID } = useSelector((state) => state.form);
