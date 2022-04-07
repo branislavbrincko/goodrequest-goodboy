@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import DoubleButton from "../DoubleButton";
-import InputSectionInfo from "../InputSectionInfo";
-import RowButtons from "../rowButtons/RowButtons";
-import SelectInput from "../SelectInput";
-import FormStep from "./FormStep";
+import DoubleButton from "./DoubleButton";
+import InputSectionInfo from "../../InputSectionInfo";
+import RowButtons from "../../rowButtons/RowButtons";
+import SelectInput from "./SelectInput";
+import FormStep from "../FormStep";
 
 function FormStep1() {
   const { useShelterID } = useSelector((state) => state.form);

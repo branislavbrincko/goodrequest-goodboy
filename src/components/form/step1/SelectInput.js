@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import useForm from "../hooks/useForm";
-import InputErrorMessage from "./InputErrorMessage";
+import useForm from "../../../hooks/useForm";
+import InputErrorMessage from "../../InputErrorMessage";
 
 const SelectInput = () => {
   const { shelterID } = useSelector((state) => state.form);

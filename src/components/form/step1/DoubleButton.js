@@ -1,8 +1,8 @@
-import { ReactComponent as WalletIcon } from "../images/WalletIcon.svg";
-import { ReactComponent as PawIcon } from "../images/PawIcon.svg";
+import { ReactComponent as WalletIcon } from "../../../images/WalletIcon.svg";
+import { ReactComponent as PawIcon } from "../../../images/PawIcon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
-import { updateForm } from "../redux/formSlice";
+import { updateForm } from "../../../redux/formSlice";
 
 function DoubleButton() {
   const { useShelterID } = useSelector((state) => state.form);

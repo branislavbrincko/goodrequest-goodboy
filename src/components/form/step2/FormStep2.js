@@ -1,7 +1,7 @@
 import React from "react";
-import InputSectionInfo from "../InputSectionInfo";
-import UserInfoSubform from "../UserInfoSubform";
-import FormStep from "./FormStep";
+import InputSectionInfo from "../../InputSectionInfo";
+import UserInfoSubform from "./UserInfoSubform";
+import FormStep from "../FormStep";
 
 function FormStep2() {
   return (

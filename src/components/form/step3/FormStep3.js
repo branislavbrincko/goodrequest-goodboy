@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import useForm from "../../hooks/useForm";
-import Checkbox from "../Checkbox";
-import Summary from "../Summary";
-import FormStep from "./FormStep";
+import useForm from "../../../hooks/useForm";
+import Checkbox from "./Checkbox";
+import Summary from "./Summary";
+import FormStep from "../FormStep";
 
 function FormStep3() {
   const { handleInputChange } = useForm();
