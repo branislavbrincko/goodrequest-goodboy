@@ -1,6 +1,6 @@
+import { clearErrorField, setErrorField } from "../../redux/formSlice";
 import { store } from "../../store";
 import { form } from "./formDefinition";
-import { clearErrorField, setErrorField } from "../../actions/formActions";
 
 export const isFormInvalid = () => {
   const errors = store.getState().form.errors;
@@ -13,11 +13,11 @@ const validateSchema = (schema, fieldName, fieldValue) => {
 
   try {
     schema.validateSync(fieldValue);
-    clearErrorField(fieldName);
+    store.dispatch(clearErrorField(fieldName));
     return true;
   } catch (error) {
     if (error.name === "ValidationError") {
-      setErrorField(fieldName, error.message);
+      store.dispatch(setErrorField(fieldName, error.message));
     } else {
       throw Error(error);
     }

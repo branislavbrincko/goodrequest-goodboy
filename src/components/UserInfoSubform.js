@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useForm from "../hooks/useForm";
-import { updateForm } from "../store";
+import { updateForm } from "../redux/formSlice";
 import InputErrorMessage from "./InputErrorMessage";
 
 function UserInfoSubform() {

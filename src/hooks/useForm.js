@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { validateField } from "../components/form/formValidation";
-import { updateForm } from "../store";
+import { updateForm } from "../redux/formSlice";
 
 function useForm(options = { shouldParseToInt: false }) {
   const { shouldParseToInt } = options;

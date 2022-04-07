@@ -4,7 +4,7 @@ import "./App.css";
 import Form from "./components/form/Form";
 import dogImage from "./images/dog-image.png";
 import Layout from "./layout/Layout";
-import { getShelters } from "./store";
+import { getShelters } from "./redux/globalSlice";
 
 function App() {
   const dispatch = useDispatch();

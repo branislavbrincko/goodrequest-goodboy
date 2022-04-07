@@ -1,13 +1,15 @@
 import classNames from "classnames";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { resetForm } from "../redux/formSlice";
+import { createContribution, setCurrentStep } from "../redux/globalSlice";
 import { validateStep, isFormInvalid } from "./form/formValidation";
-import { createContribution, resetForm, setCurrentStep } from "../store";
 
 function ActionButtons() {
   const dispatch = useDispatch();
   const { currentStep } = useSelector((state) => state.global);
   const { consent } = useSelector((state) => state.form);
+  const { form } = useSelector((state) => state);
 
   // Functions
   const setStep = (stepId) => {
@@ -30,7 +32,7 @@ function ActionButtons() {
 
   const submitForm = (e) => {
     e.preventDefault();
-    dispatch(createContribution());
+    dispatch(createContribution(form));
     goToNextStep();
   };
 
