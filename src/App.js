@@ -79,6 +79,7 @@ function App() {
                   <>
                     <h1 className="main-heading">Hotovo!</h1>
                     <div className="submission-result submission-result-success">Ďakujeme za Váš príspevok.</div>
+                    <Summary />
                   </>
                 )}
               </div>
