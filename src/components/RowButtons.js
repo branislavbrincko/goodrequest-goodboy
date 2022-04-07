@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { DEFAULT_VALUES } from "../formDefinition";
+import { DEFAULT_VALUES } from "./form/formDefinition";
 import { validateField } from "./form/formValidation";
 import { updateForm } from "../store";
 

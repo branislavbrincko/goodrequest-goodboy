@@ -1,6 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { defaultFormValues } from "./formDefinition";
+import { defaultFormValues } from "./components/form/formDefinition";
 import {
   formValuesFromLocalStorage,
   stepValueFromLocalStorage,

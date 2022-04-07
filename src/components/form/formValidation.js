@@ -1,5 +1,5 @@
 import { store } from "../../store";
-import { form } from "../../formDefinition";
+import { form } from "./formDefinition";
 import { clearErrorField, setErrorField } from "../../actions/formActions";
 
 export const isFormInvalid = () => {
