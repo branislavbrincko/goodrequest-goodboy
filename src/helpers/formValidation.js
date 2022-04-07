@@ -1,11 +1,14 @@
 import * as yup from "yup";
 import { store, updateFormErrors } from "../redux";
 
+// ---------------------
+// Yup validation schema
+// ---------------------
+
 let formValidationSchema = yup.object({
   // 1st step
   shelterID: yup.number(),
   value: yup.number().typeError("Zadajte sumu!").required("Zadajte sumu!").positive("Zadajte kladnú sumu!"),
-
   // 2nd step
   firstName: yup.string().trim().required("Meno je povinné pole!").min(2, "Meno musí mať aspoň 2 znaky!"),
   lastName: yup.string().trim().required("Priezvisko je povinné pole!").min(2, "Priezvisko musí mať aspoň 2 znaky!"),
@@ -18,6 +21,10 @@ let formValidationSchema = yup.object({
   phonePrefix: yup.string(),
 });
 
+// ----------------
+// Helper functions
+// ----------------
+
 const clearErrorField = (fieldName) => {
   const payload = { [fieldName]: "" };
   store.dispatch(updateFormErrors(payload));
@@ -28,6 +35,19 @@ const setErrorField = (errorField, errorMessage) => {
   store.dispatch(updateFormErrors(payload));
 };
 
+export const areValidationErrors = (errors, fields = null) => {
+  const keys = fields || Object.keys(errors);
+  const errorMessages = keys.map((key) => errors[key]);
+  return errorMessages.some((message) => !!message);
+};
+
+// --------------
+// Main functions
+// --------------
+
+/**
+ * Function for validating one field of the form.
+ */
 export const validateField = (fieldName, value) => {
   try {
     const objectToValidate = { [fieldName]: value };
@@ -42,6 +62,9 @@ export const validateField = (fieldName, value) => {
   }
 };
 
+/**
+ * Main logic for continuing between individual steps of the form.
+ */
 export const isFormStepValid = (stepId) => {
   const { form } = store.getState();
   const { errors, useShelterID, shelterID, useCustomValue, value, firstName, lastName, email, phone, consent } = form;
@@ -54,7 +77,8 @@ export const isFormStepValid = (stepId) => {
 
     case 1:
       if (!firstName || !lastName || !email || !phone) return false;
-      const areErrors = areValidationErrors(errors, ["firstName", "lastName", "email", "phone"]);
+      const stepFields = ["firstName", "lastName", "email", "phone"];
+      const areErrors = areValidationErrors(errors, stepFields);
       if (areErrors) return false;
       return true;
 
@@ -64,10 +88,4 @@ export const isFormStepValid = (stepId) => {
     default:
       return false;
   }
-};
-
-export const areValidationErrors = (errors, fields = null) => {
-  const keys = fields || Object.keys(errors);
-  const errorMessages = keys.map((key) => errors[key]);
-  return errorMessages.some((message) => !!message);
 };
