@@ -140,8 +140,7 @@ export function createContribution() {
     };
 
     try {
-      // await axios.post("https://frontend-assignment-api.goodrequest.dev/api/v1/shelters/contribute", dataForSubmission);
-      await fakeRequest();
+      await axios.post("https://frontend-assignment-api.goodrequest.dev/api/v1/shelters/contribute", dataForSubmission);
     } catch (error) {
       dispatch(setFormSubmissionError(true));
     }
@@ -149,11 +148,11 @@ export function createContribution() {
   };
 }
 
-function fakeRequest() {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      console.log("fake request done!");
-      res();
-    }, 1);
-  });
-}
+// function fakeRequest() {
+//   return new Promise((res, rej) => {
+//     setTimeout(() => {
+//       console.log("fake request done!");
+//       res();
+//     }, 1);
+//   });
+// }

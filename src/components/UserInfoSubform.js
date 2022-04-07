@@ -28,7 +28,7 @@ function UserInfoSubform() {
     <div>
       <div className="input-wrapper">
         <label htmlFor="firstName" className="input-label">
-          Meno
+          Meno*
         </label>
         <input
           className={"input" + getErrorClass("firstName")}
@@ -44,7 +44,7 @@ function UserInfoSubform() {
       <InputErrorMessage fieldName="firstName" />
       <div className="input-wrapper">
         <label htmlFor="lastName" className="input-label">
-          Priezvisko
+          Priezvisko*
         </label>
         <input
           className={"input" + getErrorClass("lastName")}
@@ -60,7 +60,7 @@ function UserInfoSubform() {
       <InputErrorMessage fieldName="lastName" />
       <div className="input-wrapper">
         <label htmlFor="email" className="input-label">
-          E-mailová adresa
+          E-mailová adresa*
         </label>
         <input
           className={"input" + getErrorClass("email")}

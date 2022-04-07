@@ -10,14 +10,18 @@ let formValidationSchema = yup.object({
   shelterID: yup.number(),
   value: yup.number().typeError("Zadajte sumu!").required("Zadajte sumu!").positive("Zadajte kladnú sumu!"),
   // 2nd step
-  firstName: yup.string().trim().required("Meno je povinné pole!").min(2, "Meno musí mať aspoň 2 znaky!"),
-  lastName: yup.string().trim().required("Priezvisko je povinné pole!").min(2, "Priezvisko musí mať aspoň 2 znaky!"),
+  firstName: yup.string().trim().required("Meno je povinné pole!").min(2, "Meno musí mať aspoň 2 znaky!").max(20, "Meno musí mať maximálne 20 znakov!"),
+  lastName: yup
+    .string()
+    .trim()
+    .required("Priezvisko je povinné pole!")
+    .min(2, "Priezvisko musí mať aspoň 2 znaky!")
+    .max(30, "Priezvisko musí mať maximálne 30 znakov!"),
   email: yup.string().email("Email musí mať správny tvar!").required("Email je povinné pole!"),
   phone: yup
     .string()
     .trim()
-    .required("Telefónne číslo je povinné pole!")
-    .matches(/^[0-9]{3} [0-9]{3} [0-9]{3}$/, "Zadajte telefónne číslo v tvare xxx xxx xxx"),
+    .matches(/^$|([0-9]{3} [0-9]{3} [0-9]{3})$/, "Zadajte telefónne číslo v tvare xxx xxx xxx"), // matches number in format "xxx xxx xxx" or empty string
   phonePrefix: yup.string(),
 });
 
@@ -76,7 +80,9 @@ export const isFormStepValid = (stepId) => {
       return true;
 
     case 1:
-      if (!firstName || !lastName || !email || !phone) return false;
+      // following fields must be filled out
+      if (!firstName || !lastName || !email) return false;
+      // following fields must have correct values
       const stepFields = ["firstName", "lastName", "email", "phone"];
       const areErrors = areValidationErrors(errors, stepFields);
       if (areErrors) return false;
