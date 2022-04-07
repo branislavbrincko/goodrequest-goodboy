@@ -1,6 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useForm from "../hooks/useForm";
+import { updateForm } from "../redux";
 
 function InputErrorMessage({ fieldName }) {
   const errors = useSelector((state) => state.form.errors);
@@ -8,6 +9,7 @@ function InputErrorMessage({ fieldName }) {
 }
 
 function UserInfoSubform() {
+  const dispatch = useDispatch();
   const { firstName, lastName, email, phone, phonePrefix } = useSelector((state) => state.form);
   const errors = useSelector((state) => state.form.errors);
   const { handleInputChange, handleInputBlur } = useForm();
@@ -91,6 +93,15 @@ function UserInfoSubform() {
         ></input>
       </div>
       <InputErrorMessage fieldName="phone" />
+      <button
+        onClick={() => {
+          dispatch(updateForm({ firstName: "jozko", lastName: "mrkva", email: "jozka@mrkva.com", phone: "123 456 789" }));
+        }}
+        type="button"
+        style={{ position: "absolute", backgroundColor: "white", padding: "5px", border: "1px solid lightgrey", borderRadius: "8px" }}
+      >
+        Vyplniť test údaje
+      </button>
     </div>
   );
 }
