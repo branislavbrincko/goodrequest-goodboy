@@ -19,11 +19,14 @@ VARIABLES
   --error-color: rgb(225, 14, 14);
   --success-color: rgb(41, 163, 51);
 
+  /* SHADOWS */
   --box-shadow-1: 0px 15px 20px 5px rgba(0, 0, 0, 0.15);
   --box-shadow-2: 0px 5px 20px 5px rgba(0, 0, 0, 0.1);
   --box-shadow-3: 0px 3px 7px -3px rgba(0, 0, 0, 0.15);
 
+  /* TRANSITION TIME */
   --transition-base-ms: 200ms;
+  --transition-long-ms: 500ms;
 }
 
 /* BREAKPOINTS 
@@ -512,28 +515,36 @@ PAGES
 }
 
 .input-error-message-active {
-  height: 18px;
+  height: 1.8rem;
 }
 
 .input.input-phone {
-  padding-left: calc(var(--input-x-padding)+9.5rem);
+  padding-left: 9.5rem;
 }
 
-.input-phone-country-select {
+.country-select-wrapper {
   position: absolute;
-  left: var(--input-x-padding);
-  top: 3.8rem;
-  font-size: 1.6rem;
-  background-color: transparent;
-  appearance: none;
-  cursor: pointer;
-  border-radius: 3px;
-  padding-top: 2px;
-  margin-top: -2px;
+  bottom: 0.9rem;
+  left: 2.2rem;
+  height: 3rem;
+  width: 6.8rem;
 }
 
-.input-phone-country-select:focus {
-  outline: 1px solid var(--primary-color);
+/* NOTES:
+For some reason on mobile the country select is lower than needed 
+and does not align with number input text. Also in Firefox it behaves 
+differently and value needs to be different.
+  */
+@media only screen and (max-width: 481px) {
+  .country-select-wrapper {
+    bottom: 1rem;
+  }
+}
+
+@-moz-document url-prefix() and @media only screen and (max-width: 481px) {
+  .country-select-wrapper {
+    bottom: 0.3rem;
+  }
 }
 
 /* 

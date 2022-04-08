@@ -3,14 +3,43 @@ import { useDispatch, useSelector } from "react-redux";
 import useForm from "../../../hooks/useForm";
 import { updateForm } from "../../../redux/formSlice";
 import InputErrorMessage from "../../InputErrorMessage";
+import Select from "react-select";
+import classNames from "classnames";
+
+const phonePrefixInputStyles = {
+  control: (styles, { isFocused }) => ({
+    ...styles,
+    cursor: "pointer",
+    boxShadow: "none",
+    fontSize: "1.6rem",
+    borderRadius: "0.4rem",
+    backgroundColor: "transparent",
+    borderColor: isFocused ? "var(--primary-color)" : "transparent",
+    "&:hover": { borderColor: "var(--primary-color)" },
+    minHeight: "0",
+    height: "100%",
+  }),
+  placeholder: (styles) => ({ ...styles, color: "var(--primary-text-color)" }),
+  valueContainer: (styles) => ({ ...styles, padding: "0" }),
+  option: (styles, { data, isDisabled, isFocused, isSelected }) => ({
+    ...styles,
+    fontSize: "1.6rem",
+    backgroundColor: isDisabled ? undefined : isSelected ? "var(--primary-color)" : isFocused ? "var(--light-grey)" : undefined,
+    color: isDisabled ? "var(--lightgrey)" : isSelected ? "white" : data.color,
+    cursor: "pointer",
+  }),
+};
+
+const phonePrefixInputOptions = [
+  { value: "+421", label: "🇸🇰 +421" },
+  { value: "+420", label: "🇨🇿 +420" },
+];
 
 function UserInfoSubform() {
   const dispatch = useDispatch();
   const { firstName, lastName, email, phone, phonePrefix } = useSelector((state) => state.form);
   const errors = useSelector((state) => state.form.errors);
-  const { handleInputChange, handleInputBlur } = useForm();
-
-  const getErrorClass = (fieldName) => (errors[fieldName] ? " input-error" : "");
+  const { handleInputChange, handleInputBlur, handleInputChangeFromNameAndValue } = useForm();
 
   const handlePhoneInputChange = (e) => {
     // input is of type string, but we don't want to allow user to enter any character
@@ -19,6 +48,9 @@ function UserInfoSubform() {
     if (!onlyNumbersAndEmptyCharacter) e.target.value = phone;
     handleInputChange(e);
   };
+  const handlePhonePrefixInpupChange = ({ value }) => handleInputChangeFromNameAndValue("phonePrefix", value);
+  const getClasses = (fieldName) => classNames("input", { "input-error": errors[fieldName] });
+  const phoneInputClasses = classNames("input", "input-phone", { "input-error": errors["phone"] });
 
   return (
     <div>
@@ -27,7 +59,7 @@ function UserInfoSubform() {
           Meno*
         </label>
         <input
-          className={"input" + getErrorClass("firstName")}
+          className={getClasses("firstName")}
           type="text"
           name="firstName"
           id="firstName"
@@ -43,7 +75,7 @@ function UserInfoSubform() {
           Priezvisko*
         </label>
         <input
-          className={"input" + getErrorClass("lastName")}
+          className={getClasses("lastName")}
           type="text"
           name="lastName"
           id="lastName"
@@ -59,7 +91,7 @@ function UserInfoSubform() {
           E-mailová adresa*
         </label>
         <input
-          className={"input" + getErrorClass("email")}
+          className={getClasses("email")}
           type="email"
           name="email"
           id="email"
@@ -71,15 +103,20 @@ function UserInfoSubform() {
       </div>
       <InputErrorMessage fieldName="email" />
       <div className="input-wrapper">
-        <select className="input-phone-country-select" name="phonePrefix" id="phonePrefix" onChange={handleInputChange} value={phonePrefix}>
-          <option value="+421">🇸🇰 &nbsp; +421</option>
-          <option value="+420">🇨🇿 &nbsp; +420</option>
-        </select>
+        <div className="country-select-wrapper">
+          <Select
+            options={phonePrefixInputOptions}
+            components={{ IndicatorSeparator: () => null, DropdownIndicator: () => null }}
+            styles={phonePrefixInputStyles}
+            onChange={handlePhonePrefixInpupChange}
+            defaultValue={phonePrefixInputOptions[0]}
+          />
+        </div>
         <label htmlFor="phone" className="input-label">
           Telefónne číslo
         </label>
         <input
-          className={"input input-phone" + getErrorClass("phone")}
+          className={phoneInputClasses}
           type="text"
           name="phone"
           id="phone"
