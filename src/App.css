@@ -29,7 +29,7 @@ VARIABLES
   --transition-long-ms: 500ms;
 }
 
-/* BREAKPOINTS 
+/* BREAKPOINTS
 breakpoint-mobile: 320px;
 breakpoint-tablet: 481px;
 breakpoint-laptop: 769px;
@@ -317,14 +317,19 @@ ROW BUTTONS
 
 .row-input-button-error {
   display: block;
-  color: var(--error-color);
   font-size: 1.4rem;
   position: absolute;
-  bottom: -25px;
+  bottom: -2.5rem;
   right: 0;
   top: 120%;
   width: 50rem;
   text-align: right;
+  transition: all var(--transition-long-ms);
+  color: transparent;
+}
+
+.row-input-button-error-active {
+  color: var(--error-color);
 }
 
 /* 

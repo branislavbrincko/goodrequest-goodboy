@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { validateField } from "../form/formValidation";
@@ -36,6 +37,10 @@ function RowButtonWithInput({ setValue, useCustomValue, setUseCustomValue }) {
   if (useCustomValue) inputBtnClasses += " row-button-active";
   if (showError) inputBtnClasses += " row-button-error";
 
+  const errorClasses = classNames("row-input-button-error", {
+    "row-input-button-error-active": showError,
+  });
+
   return (
     <button className={inputBtnClasses} type="button" onClick={handleInputBtnClick}>
       <input
@@ -47,7 +52,7 @@ function RowButtonWithInput({ setValue, useCustomValue, setUseCustomValue }) {
         value={prevCustomValue ? prevCustomValue : ""}
       ></input>
       <span>€</span>
-      {showError && <span className="row-input-button-error">{valueError} </span>}
+      <div className={errorClasses}>{valueError}</div>
     </button>
   );
 }
