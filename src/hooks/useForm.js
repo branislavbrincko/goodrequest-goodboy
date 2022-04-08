@@ -22,7 +22,15 @@ function useForm(options = { shouldParseToInt: false }) {
     validateField(fieldName, value);
   };
 
-  return { handleInputChange, handleInputBlur };
+  const handleInputChangeFromNameAndValue = (fieldName, value) => {
+    // update input field in store
+    const valueForPayload = shouldParseToInt ? parseInt(value) : value;
+    const payload = { [fieldName]: valueForPayload };
+    dispatch(updateForm(payload));
+    validateField(fieldName, value);
+  };
+
+  return { handleInputChange, handleInputBlur, handleInputChangeFromNameAndValue };
 }
 
 export default useForm;
