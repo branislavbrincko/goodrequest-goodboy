@@ -1,5 +1,6 @@
 import classNames from "classnames";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { clearErrorField } from "../../redux/formSlice";
 import { DEFAULT_VALUES } from "../form/formDefinition";
 
 const setValueToId = (value) => `value-${value}`;
@@ -7,8 +8,10 @@ const getValueFromId = (id) => id.split("-")[1];
 
 function RowButtonsStandard({ setValue, useCustomValue, setUseCustomValue }) {
   const { value } = useSelector((state) => state.form);
+  const dispatch = useDispatch();
 
   const handleRowButtonClick = (e) => {
+    dispatch(clearErrorField("value"));
     setUseCustomValue(false);
     const targetId = e.target.id;
     const newValue = getValueFromId(targetId);
