@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { useSelector } from "react-redux";
 import useForm from "../../../hooks/useForm";
 import InputErrorMessage from "../../InputErrorMessage";
@@ -31,9 +32,13 @@ const labelStyles = { position: "absolute", zIndex: 5, left: "31px", top: "15px"
 
 const SelectInput = () => {
   const { shelters } = useSelector((state) => state.global);
+  const { shelterID } = useSelector((state) => state.form);
   const { handleInputChangeFromNameAndValue } = useForm({ shouldParseToInt: true });
 
   const options = shelters.map((shelter) => ({ value: shelter.id, label: shelter.name }));
+  const currentShelter = shelters.find((shelter) => shelter.id === shelterID);
+  const currentOption = currentShelter ? { value: currentShelter.id, label: currentShelter.name } : null;
+
   const handleChange = ({ value }) => handleInputChangeFromNameAndValue("shelterID", value);
 
   return (
@@ -49,6 +54,7 @@ const SelectInput = () => {
           styles={colourStyles}
           components={{ IndicatorSeparator: () => null }}
           onChange={handleChange}
+          value={currentOption}
         />
       </div>
       <InputErrorMessage fieldName="shelterID" />
