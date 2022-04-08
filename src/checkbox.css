@@ -7,6 +7,7 @@
 
 .checkbox-input {
   width: 0; /* hack to hide element */
+  opacity: 0;
 }
 
 .checkbox-box {

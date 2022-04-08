@@ -47,8 +47,8 @@ export function getShelters() {
       // const response = await axios.get("https://frontend-assignment-api.goodrequest.dev/api/v1/shelters");
       // const { shelters } = response.data;
       const shelters = [
-        { id: 1, name: "Utulok 1" },
-        { id: 2, name: "Utulok 2" },
+        { id: 1, name: "Útulok pre psov - TEZAS" },
+        { id: 2, name: "OZ Tuláčik Brezno" },
       ];
       dispatch(setShelters(shelters));
       dispatch(setSheltersLoading(false));

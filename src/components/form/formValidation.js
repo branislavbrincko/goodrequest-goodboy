@@ -10,6 +10,8 @@ export const isFormInvalid = () => {
 
 export const isFormStepInvalid = (stepId) => {
   const errors = store.getState().form.errors;
+  const formStepFields = form[stepId];
+  if (!formStepFields) return false;
   const currentStepFieldNames = form[stepId].map((field) => field.name);
   const errorField = currentStepFieldNames.find((fieldName) => !!errors[fieldName]);
   return !!errorField;
