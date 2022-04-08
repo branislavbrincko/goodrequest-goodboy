@@ -8,6 +8,13 @@ export const isFormInvalid = () => {
   return Object.values(errors).some((message) => !!message);
 };
 
+export const isFormStepInvalid = (stepId) => {
+  const errors = store.getState().form.errors;
+  const currentStepFieldNames = form[stepId].map((field) => field.name);
+  const errorField = currentStepFieldNames.find((fieldName) => !!errors[fieldName]);
+  return !!errorField;
+};
+
 const validateSchema = (schema, fieldName, fieldValue) => {
   if (!schema) return true; // if there is no schema, field needs no validation
 

@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { resetForm } from "../redux/formSlice";
 import { createContribution, setCurrentStep } from "../redux/globalSlice";
-import { validateStep, isFormInvalid } from "./form/formValidation";
+import { validateStep, isFormStepInvalid } from "./form/formValidation";
 
 function ActionButtons() {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ function ActionButtons() {
 
   // Values
   const submitButtonDisabled = consent;
-  const nextButtonDisabled = isFormInvalid();
+  const nextButtonDisabled = isFormStepInvalid(currentStep);
 
   // Classes
   const actionButtonsContainerClasses = classNames("action-buttons-container", {
