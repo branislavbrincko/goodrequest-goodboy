@@ -2,7 +2,7 @@ import { ReactComponent as WalletIcon } from "../../../images/WalletIcon.svg";
 import { ReactComponent as PawIcon } from "../../../images/PawIcon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
-import { updateForm } from "../../../redux/formSlice";
+import { clearErrorField, updateForm } from "../../../redux/formSlice";
 
 function DoubleButton() {
   const { useShelterID } = useSelector((state) => state.form);
@@ -10,6 +10,7 @@ function DoubleButton() {
 
   const handleClick = (btnId) => {
     const payload = { useShelterID: btnId === 0 };
+    dispatch(clearErrorField("shelterID"));
     dispatch(updateForm(payload));
   };
 
