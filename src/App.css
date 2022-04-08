@@ -507,6 +507,12 @@ PAGES
   padding-left: 2.4rem;
   margin-top: -0.8rem;
   margin-bottom: 1rem;
+  height: 0px;
+  transition: all var(--transition-base-ms);
+}
+
+.input-error-message-active {
+  height: 18px;
 }
 
 .input.input-phone {
