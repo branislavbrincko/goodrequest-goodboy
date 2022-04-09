@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
+import { formatPhoneNumber, onlyPhoneNumberCharacters } from "../../../helpers/phoneNumber";
 import useForm from "../../../hooks/useForm";
 import { updateForm } from "../../../redux/formSlice";
 import InputErrorMessage from "../../InputErrorMessage";
@@ -7,17 +8,23 @@ import CountrySelect from "./CountrySelect";
 
 function UserInfoSubform() {
   const dispatch = useDispatch();
-  const { firstName, lastName, email, phone, phonePrefix } = useSelector((state) => state.form);
+  const { firstName, lastName, email, phone } = useSelector((state) => state.form);
   const errors = useSelector((state) => state.form.errors);
   const { handleInputChange } = useForm();
 
   const handlePhoneInputChange = (e) => {
-    // input is of type string, but we don't want to allow user to enter any character
     const inputValue = e.target.value;
-    const onlyNumbersAndEmptyCharacter = new RegExp("^[0-9 ]*$").test(inputValue);
-    if (!onlyNumbersAndEmptyCharacter) e.target.value = phone;
+
+    // input is of type string, but we don't want to allow user
+    // to enter any letters, only numbers and empty character
+    const valueOk = onlyPhoneNumberCharacters(inputValue);
+    if (!valueOk) return;
+
+    // format number ("123123123" -> "123 123 123")
+    e.target.value = formatPhoneNumber(inputValue);
     handleInputChange(e);
   };
+
   const getClasses = (fieldName) => classNames("input", { "input-error": errors[fieldName] });
   const phoneInputClasses = classNames("input", "input-phone", { "input-error": errors["phone"] });
 

@@ -8,10 +8,10 @@ function Navbar() {
       <span>Nadácia Good Boy</span>
       <div>
         <a href="#">
-          <FacebookIcon class="navbar-icon" width="24" height="24" />
+          <FacebookIcon className="navbar-icon" width="24" height="24" />
         </a>
         <a href="#">
-          <InstragramIcon class="navbar-icon" width="24" height="24" />
+          <InstragramIcon className="navbar-icon" width="24" height="24" />
         </a>
       </div>
     </nav>
