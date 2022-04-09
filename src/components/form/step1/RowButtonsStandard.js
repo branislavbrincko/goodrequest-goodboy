@@ -6,8 +6,8 @@ import { DEFAULT_VALUES } from "../../form/formDefinition";
 const setValueToId = (value) => `value-${value}`;
 const getValueFromId = (id) => id.split("-")[1];
 
-function RowButtonsStandard({ setValue, useCustomValue, setUseCustomValue }) {
-  const { value } = useSelector((state) => state.form);
+function RowButtonsStandard({ setValue, setUseCustomValue }) {
+  const { value, useCustomValue } = useSelector((state) => state.form);
   const dispatch = useDispatch();
 
   const handleRowButtonClick = (e) => {

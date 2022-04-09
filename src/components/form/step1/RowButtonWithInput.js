@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { validateField } from "../../form/formValidation";
 
-function RowButtonWithInput({ setValue, useCustomValue, setUseCustomValue }) {
+function RowButtonWithInput({ setValue, setUseCustomValue }) {
   const [prevCustomValue, setPrevCustomValue] = useState("");
+  const useCustomValue = useSelector((state) => state.form);
   const valueError = useSelector((state) => state.form.errors.value);
 
   const handleInputBtnChange = (e) => {

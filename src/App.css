@@ -526,13 +526,16 @@ FOOTER
 
 .footer-link {
   border: 1px solid transparent;
-  transition: border-color var(--transition-base-ms);
+  transition: all var(--transition-base-ms);
 }
 
 .footer-link:focus {
-  border: 1px solid var(--primary-color);
   outline: none;
-  border-radius: 0.4rem;
+  color: var(--primary-color);
+}
+
+.footer-link:hover {
+  color: var(--primary-color);
 }
 
 .logo-images {
