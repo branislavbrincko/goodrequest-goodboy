@@ -74,6 +74,8 @@ export const form = [
   ],
 ];
 
+export const NUMBER_OF_STEPS = form.length;
+
 //
 // Prepare default values for redux store
 //
