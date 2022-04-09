@@ -5,7 +5,7 @@ import { validateField } from "../../form/formValidation";
 
 function RowButtonWithInput({ setValue, setUseCustomValue }) {
   const [prevCustomValue, setPrevCustomValue] = useState("");
-  const useCustomValue = useSelector((state) => state.form);
+  const { useCustomValue } = useSelector((state) => state.form);
   const valueError = useSelector((state) => state.form.errors.value);
 
   const handleInputBtnChange = (e) => {

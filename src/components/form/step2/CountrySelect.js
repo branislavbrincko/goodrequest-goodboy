@@ -60,6 +60,7 @@ function CountrySelect() {
         styles={phonePrefixInputStyles}
         onChange={handlePhonePrefixInpupChange}
         defaultValue={phonePrefixInputOptions[0]}
+        isSearchable={false}
       />
     </div>
   );

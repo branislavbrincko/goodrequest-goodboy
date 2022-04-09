@@ -1,13 +1,11 @@
 import classNames from "classnames";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { formatPhoneNumber, onlyPhoneNumberCharacters } from "../../../helpers/phoneNumber";
 import useForm from "../../../hooks/useForm";
-import { updateForm } from "../../../redux/formSlice";
 import InputErrorMessage from "../../InputErrorMessage";
 import CountrySelect from "./CountrySelect";
 
 function UserInfoSubform() {
-  const dispatch = useDispatch();
   const { firstName, lastName, email, phone } = useSelector((state) => state.form);
   const errors = useSelector((state) => state.form.errors);
   const { handleInputChange } = useForm();
@@ -83,15 +81,6 @@ function UserInfoSubform() {
         <input className={phoneInputClasses} type="text" name="phone" id="phone" onChange={handlePhoneInputChange} value={phone}></input>
       </div>
       <InputErrorMessage fieldName="phone" />
-      <button
-        onClick={() => {
-          dispatch(updateForm({ firstName: "jozko", lastName: "mrkva", email: "jozka@mrkva.com", phone: "123 456 789" }));
-        }}
-        type="button"
-        style={{ position: "absolute", backgroundColor: "white", padding: "5px", border: "1px solid lightgrey", borderRadius: "8px" }}
-      >
-        Vyplniť test údaje
-      </button>
     </div>
   );
 }
