@@ -14,14 +14,20 @@ function Footer() {
         <h3 className="footer-column-title">Nadácia Good Boy</h3>
         <div className="footer-column-content">
           <ul className="footer-list">
-            <li className="footer-link">
-              <a href="#">O projekte</a>
+            <li className="footer-link-item">
+              <a href="#" className="footer-link">
+                O projekte
+              </a>
             </li>
-            <li className="footer-link">
-              <a href="#">Ako na to</a>
+            <li className="footer-link-item">
+              <a href="#" className="footer-link">
+                Ako na to
+              </a>
             </li>
-            <li className="footer-link">
-              <a href="#">Kontakt</a>
+            <li className="footer-link-item">
+              <a href="#" className="footer-link">
+                Kontakt
+              </a>
             </li>
           </ul>
         </div>

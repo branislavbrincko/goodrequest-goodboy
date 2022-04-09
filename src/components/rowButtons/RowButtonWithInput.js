@@ -33,27 +33,31 @@ function RowButtonWithInput({ setValue, useCustomValue, setUseCustomValue }) {
   };
 
   const showError = valueError && useCustomValue;
-  let inputBtnClasses = "row-button row-input-button";
-  if (useCustomValue) inputBtnClasses += " row-button-active";
-  if (showError) inputBtnClasses += " row-button-error";
+
+  const inputButtonClasses = classNames("row-button", "row-input-button", {
+    "row-button-active": useCustomValue,
+    "row-button-error": showError,
+  });
 
   const errorClasses = classNames("row-input-button-error", {
     "row-input-button-error-active": showError,
   });
 
   return (
-    <button className={inputBtnClasses} type="button" onClick={handleInputBtnClick}>
-      <input
-        type="number"
-        className="row-input-button-input"
-        onChange={handleInputBtnChange}
-        onFocus={handleInputBtnFocus}
-        onBlur={handleInputBtnBlur}
-        value={prevCustomValue ? prevCustomValue : ""}
-      ></input>
-      <span>€</span>
+    <>
+      <button className={inputButtonClasses} type="button" onClick={handleInputBtnClick}>
+        <input
+          type="number"
+          className="row-input-button-input"
+          onChange={handleInputBtnChange}
+          onFocus={handleInputBtnFocus}
+          onBlur={handleInputBtnBlur}
+          value={prevCustomValue ? prevCustomValue : ""}
+        ></input>
+        <span>€</span>
+      </button>
       <div className={errorClasses}>{valueError}</div>
-    </button>
+    </>
   );
 }
 

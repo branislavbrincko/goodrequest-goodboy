@@ -297,7 +297,7 @@ ROW BUTTONS
   padding: 1rem;
   border-radius: 0.8rem;
   font-weight: 800;
-  transition: all 200ms;
+  transition: all var(--transition-base-ms);
   position: relative;
 }
 
@@ -311,13 +311,17 @@ ROW BUTTONS
 }
 
 .row-button:hover {
-  transform: scale(1.02);
-  box-shadow: var(--box-shadow-3);
+  border-color: var(--primary-color);
 }
 
 .row-button:focus {
-  outline: 1px solid var(--primary-color);
   border-color: var(--primary-color);
+  outline: none;
+}
+
+.row-button.row-button-active:focus {
+  border-color: var(--primary-color-dark);
+  outline: none;
 }
 
 .row-input-button {
@@ -384,7 +388,7 @@ ACTION BUTTONS
 }
 
 .action-button:focus {
-  outline: 1px solid var(--primary-color);
+  outline: 1px solid var(--primary-color-dark);
   border-color: var(--primary-color);
 }
 
@@ -464,8 +468,20 @@ FOOTER
   color: var(--secondary-text-color);
 }
 
-.footer-link {
+.footer-link-item {
   margin-bottom: 0.8rem;
+  border: 1px solid transparent;
+  transition: border-color var(--transition-base-ms);
+}
+
+.footer-link:focus {
+  border: 1px solid transparent;
+}
+
+.footer-link:focus {
+  border: 1px solid var(--primary-color);
+  outline: none;
+  border-radius: 0.4rem;
 }
 
 .logo-images {
@@ -537,6 +553,7 @@ STEPS
   padding-top: 2.4rem;
   border: 1px solid var(--light-grey);
   border-radius: 0.8rem;
+  transition: border-color var(--transition-base-ms);
 }
 
 .input-error {
@@ -544,7 +561,8 @@ STEPS
 }
 
 .input:focus {
-  outline: 1px solid var(--primary-color);
+  border-color: var(--primary-color);
+  outline: none;
 }
 
 .input-error-message {
