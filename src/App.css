@@ -524,15 +524,14 @@ PAGES
 }
 
 .input.input-phone {
-  padding-left: 9.5rem;
+  padding-left: 8.9rem;
 }
 
 .country-select-wrapper {
   position: absolute;
-  bottom: 0.9rem;
-  left: 2.2rem;
+  bottom: 0.8rem;
   height: 3rem;
-  width: 6.8rem;
+  left: 2rem;
 }
 
 /* NOTES:

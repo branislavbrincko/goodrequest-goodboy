@@ -1,45 +1,15 @@
-import React from "react";
+import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import useForm from "../../../hooks/useForm";
 import { updateForm } from "../../../redux/formSlice";
 import InputErrorMessage from "../../InputErrorMessage";
-import Select from "react-select";
-import classNames from "classnames";
-
-const phonePrefixInputStyles = {
-  control: (styles, { isFocused }) => ({
-    ...styles,
-    cursor: "pointer",
-    boxShadow: "none",
-    fontSize: "1.6rem",
-    borderRadius: "0.4rem",
-    backgroundColor: "transparent",
-    borderColor: isFocused ? "var(--primary-color)" : "transparent",
-    "&:hover": { borderColor: "var(--primary-color)" },
-    minHeight: "0",
-    height: "100%",
-  }),
-  placeholder: (styles) => ({ ...styles, color: "var(--primary-text-color)" }),
-  valueContainer: (styles) => ({ ...styles, padding: "0" }),
-  option: (styles, { data, isDisabled, isFocused, isSelected }) => ({
-    ...styles,
-    fontSize: "1.6rem",
-    backgroundColor: isDisabled ? undefined : isSelected ? "var(--primary-color)" : isFocused ? "var(--light-grey)" : undefined,
-    color: isDisabled ? "var(--lightgrey)" : isSelected ? "white" : data.color,
-    cursor: "pointer",
-  }),
-};
-
-const phonePrefixInputOptions = [
-  { value: "+421", label: "🇸🇰 +421" },
-  { value: "+420", label: "🇨🇿 +420" },
-];
+import CountrySelect from "./CountrySelect";
 
 function UserInfoSubform() {
   const dispatch = useDispatch();
   const { firstName, lastName, email, phone, phonePrefix } = useSelector((state) => state.form);
   const errors = useSelector((state) => state.form.errors);
-  const { handleInputChange, handleInputBlur, handleInputChangeFromNameAndValue } = useForm();
+  const { handleInputChange, handleInputBlur } = useForm();
 
   const handlePhoneInputChange = (e) => {
     // input is of type string, but we don't want to allow user to enter any character
@@ -48,7 +18,6 @@ function UserInfoSubform() {
     if (!onlyNumbersAndEmptyCharacter) e.target.value = phone;
     handleInputChange(e);
   };
-  const handlePhonePrefixInpupChange = ({ value }) => handleInputChangeFromNameAndValue("phonePrefix", value);
   const getClasses = (fieldName) => classNames("input", { "input-error": errors[fieldName] });
   const phoneInputClasses = classNames("input", "input-phone", { "input-error": errors["phone"] });
 
@@ -103,15 +72,7 @@ function UserInfoSubform() {
       </div>
       <InputErrorMessage fieldName="email" />
       <div className="input-wrapper">
-        <div className="country-select-wrapper">
-          <Select
-            options={phonePrefixInputOptions}
-            components={{ IndicatorSeparator: () => null, DropdownIndicator: () => null }}
-            styles={phonePrefixInputStyles}
-            onChange={handlePhonePrefixInpupChange}
-            defaultValue={phonePrefixInputOptions[0]}
-          />
-        </div>
+        <CountrySelect />
         <label htmlFor="phone" className="input-label">
           Telefónne číslo
         </label>
