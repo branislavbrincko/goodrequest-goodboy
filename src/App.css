@@ -324,6 +324,10 @@ ROW BUTTONS
   outline: none;
 }
 
+.row-input-button-wrapper {
+  position: relative;
+}
+
 .row-input-button {
   display: flex;
   align-items: center;
@@ -342,15 +346,29 @@ ROW BUTTONS
   text-align: center;
 }
 
+/* Chrome, Safari, Edge, Opera */
+.row-input-button-input::-webkit-outer-spin-button,
+.row-input-button-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.row-input-button-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .row-input-button-input:focus {
-  outline: 1px solid var(--white);
+  /* outline: 1px solid var(--white); */
+  outline: none;
+  border: 1px solid var(--white);
+  border-radius: 0.4rem;
 }
 
 .row-input-button-error {
-  display: block;
   font-size: 1.4rem;
   position: absolute;
-  bottom: -2.5rem;
+  bottom: 0rem;
   right: 0;
   top: 120%;
   width: 50rem;
@@ -546,7 +564,6 @@ STEPS
 /* INPUTS */
 
 .input-wrapper {
-  margin-bottom: 1.6rem;
   position: relative;
   height: 7rem;
   border-radius: 0.8rem;
@@ -574,7 +591,7 @@ STEPS
 
   position: absolute;
   z-index: 5;
-  left: 31px;
+  left: 24px;
   top: 15px;
 }
 
@@ -602,10 +619,12 @@ STEPS
   color: var(--error-color);
   font-size: 1.6rem;
   padding-left: 2.4rem;
-  margin-top: -0.8rem;
   margin-bottom: 1rem;
+  margin-top: 0.5rem;
   height: 0px;
   transition: all var(--transition-base-ms);
+
+  /* border: 1px solid #000; */
 }
 
 .input-error-message-active {

@@ -8,7 +8,7 @@ const colourStyles = {
     ...styles,
     height: "70px",
     paddingTop: "24px",
-    paddingLeft: "20px",
+    paddingLeft: "14px",
     fontSize: "16px",
     borderRadius: "8px",
     cursor: "pointer",

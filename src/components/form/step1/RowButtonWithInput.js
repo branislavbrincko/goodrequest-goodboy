@@ -44,7 +44,7 @@ function RowButtonWithInput({ setValue, useCustomValue, setUseCustomValue }) {
   });
 
   return (
-    <>
+    <div className="row-input-button-wrapper">
       <button className={inputButtonClasses} type="button" onClick={handleInputBtnClick}>
         <input
           type="number"
@@ -57,7 +57,7 @@ function RowButtonWithInput({ setValue, useCustomValue, setUseCustomValue }) {
         <span>€</span>
       </button>
       <div className={errorClasses}>{valueError}</div>
-    </>
+    </div>
   );
 }
 
