@@ -7,7 +7,7 @@ import FormStep4 from "./step4/FormStep4";
 
 function Form() {
   return (
-    <form>
+    <form autoComplete="off">
       <StepIndicator />
       <FormStep1 />
       <FormStep2 />

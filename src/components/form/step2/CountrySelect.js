@@ -49,8 +49,8 @@ const phonePrefixInputOptions = [
 ];
 
 function CountrySelect() {
-  const { handleInputChangeFromNameAndValue } = useForm;
-  const handlePhonePrefixInpupChange = ({ value }) => handleInputChangeFromNameAndValue("phonePrefix", value);
+  const { handleInputChange } = useForm();
+  const handlePhonePrefixInpupChange = ({ value }) => handleInputChange(null, "phonePrefix", value);
 
   return (
     <div className="country-select-wrapper">

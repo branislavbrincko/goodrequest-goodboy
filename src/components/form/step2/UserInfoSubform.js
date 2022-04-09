@@ -9,7 +9,7 @@ function UserInfoSubform() {
   const dispatch = useDispatch();
   const { firstName, lastName, email, phone, phonePrefix } = useSelector((state) => state.form);
   const errors = useSelector((state) => state.form.errors);
-  const { handleInputChange, handleInputBlur } = useForm();
+  const { handleInputChange } = useForm();
 
   const handlePhoneInputChange = (e) => {
     // input is of type string, but we don't want to allow user to enter any character
@@ -34,7 +34,6 @@ function UserInfoSubform() {
           id="firstName"
           placeholder="Zadajte Vaše meno"
           onChange={handleInputChange}
-          onBlur={handleInputBlur}
           value={firstName}
         ></input>
       </div>
@@ -50,7 +49,6 @@ function UserInfoSubform() {
           id="lastName"
           placeholder="Zadajte Vaše priezvisko"
           onChange={handleInputChange}
-          onBlur={handleInputBlur}
           value={lastName}
         ></input>
       </div>
@@ -66,7 +64,6 @@ function UserInfoSubform() {
           id="email"
           placeholder="Zadajte Váš e-mail"
           onChange={handleInputChange}
-          onBlur={handleInputBlur}
           value={email}
         ></input>
       </div>
@@ -76,15 +73,7 @@ function UserInfoSubform() {
         <label htmlFor="phone" className="input-label">
           Telefónne číslo
         </label>
-        <input
-          className={phoneInputClasses}
-          type="text"
-          name="phone"
-          id="phone"
-          onChange={handlePhoneInputChange}
-          onBlur={handleInputBlur}
-          value={phone}
-        ></input>
+        <input className={phoneInputClasses} type="text" name="phone" id="phone" onChange={handlePhoneInputChange} value={phone}></input>
       </div>
       <InputErrorMessage fieldName="phone" />
       <button

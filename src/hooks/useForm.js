@@ -2,35 +2,25 @@ import { useDispatch } from "react-redux";
 import { validateField } from "../components/form/formValidation";
 import { updateForm } from "../redux/formSlice";
 
-function useForm(options = { shouldParseToInt: false }) {
-  const { shouldParseToInt } = options;
+function useForm() {
   const dispatch = useDispatch();
 
-  const handleInputChange = (e) => {
-    const fieldName = e.target.id;
-    const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+  const handleInputChange = (e, fieldName = null, value = null) => {
+    // get fieldName and value from event if it exists
+    if (e) {
+      fieldName = e.target.id;
+      value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    }
 
     // update input field in store
-    const valueForPayload = shouldParseToInt ? parseInt(value) : value;
-    const payload = { [fieldName]: valueForPayload };
+    const payload = { [fieldName]: value };
     dispatch(updateForm(payload));
-  };
 
-  const handleInputBlur = (e) => {
-    const fieldName = e.target.id;
-    const value = e.target.value;
+    // validate field which sets errors fields in store
     validateField(fieldName, value);
   };
 
-  const handleInputChangeFromNameAndValue = (fieldName, value) => {
-    // update input field in store
-    const valueForPayload = shouldParseToInt ? parseInt(value) : value;
-    const payload = { [fieldName]: valueForPayload };
-    dispatch(updateForm(payload));
-    validateField(fieldName, value);
-  };
-
-  return { handleInputChange, handleInputBlur, handleInputChangeFromNameAndValue };
+  return { handleInputChange };
 }
 
 export default useForm;

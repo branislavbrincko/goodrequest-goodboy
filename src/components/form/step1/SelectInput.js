@@ -30,13 +30,13 @@ const colourStyles = {
 const SelectInput = () => {
   const { shelters } = useSelector((state) => state.global);
   const { shelterID } = useSelector((state) => state.form);
-  const { handleInputChangeFromNameAndValue } = useForm({ shouldParseToInt: true });
+  const { handleInputChange } = useForm();
 
   const options = shelters.map((shelter) => ({ value: shelter.id, label: shelter.name }));
   const currentShelter = shelters.find((shelter) => shelter.id === shelterID);
   const currentOption = currentShelter ? { value: currentShelter.id, label: currentShelter.name } : null;
 
-  const handleChange = ({ value }) => handleInputChangeFromNameAndValue("shelterID", value);
+  const handleChange = ({ value }) => handleInputChange(null, "shelterID", parseInt(value));
 
   return (
     <div style={{ position: "relative", marginBottom: "40px" }}>

@@ -35,9 +35,7 @@ function Summary() {
       </div>
       <div className="summary-row">
         <h2 className="summary-heading">Telefónne číslo</h2>
-        <p className="summary-text">
-          {phonePrefix} {phone}
-        </p>
+        <p className="summary-text">{phone ? `${phonePrefix} ${phone}` : "-"}</p>
       </div>
     </section>
   );
