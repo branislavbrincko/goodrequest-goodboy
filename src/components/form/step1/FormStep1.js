@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import DoubleButton from "./DoubleButton";
+import ContributionDoubleButton from "./ContributionDoubleButton";
 import InputSectionInfo from "../../InputSectionInfo";
-import RowButtons from "../../rowButtons/RowButtons";
-import SelectInput from "./SelectInput";
+import ContributionValueButtons from "./ContributionValueButtons";
+import ShelterSelect from "./ShelterSelect";
 import FormStep from "../FormStep";
 
 function FormStep1() {
@@ -12,12 +12,12 @@ function FormStep1() {
   return (
     <FormStep stepId={0}>
       <h1 className="main-heading">Vyberte si možnosť, ako chcete prispieť</h1>
-      <DoubleButton />
+      <ContributionDoubleButton />
       <InputSectionInfo title="O projekte" required={useShelterID} />
-      <SelectInput />
+      <ShelterSelect />
       <InputSectionInfo title="Suma, ktorou chcem prispieť" />
       <div className="input-wrapper">
-        <RowButtons />
+        <ContributionValueButtons />
       </div>
     </FormStep>
   );

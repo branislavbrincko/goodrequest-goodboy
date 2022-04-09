@@ -1,6 +1,6 @@
 import React from "react";
 import InputSectionInfo from "../../InputSectionInfo";
-import UserInfoSubform from "./UserInfoSubform";
+import UserInfoInputs from "./UserInfoInputs";
 import FormStep from "../FormStep";
 
 function FormStep2() {
@@ -8,7 +8,7 @@ function FormStep2() {
     <FormStep stepId={1}>
       <h1 className="main-heading">Potrebujeme od Vás zopár informácií</h1>
       <InputSectionInfo title="O vás" />
-      <UserInfoSubform />
+      <UserInfoInputs />
     </FormStep>
   );
 }

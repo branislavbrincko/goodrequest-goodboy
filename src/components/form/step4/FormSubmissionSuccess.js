@@ -1,5 +1,5 @@
 import React from "react";
-import Summary from "../step3/Summary";
+import Summary from "../../Summary";
 
 function FormSubmissionSuccess() {
   return (

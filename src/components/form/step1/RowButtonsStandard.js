@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrorField } from "../../redux/formSlice";
-import { DEFAULT_VALUES } from "../form/formDefinition";
+import { clearErrorField } from "../../../redux/formSlice";
+import { DEFAULT_VALUES } from "../../form/formDefinition";
 
 const setValueToId = (value) => `value-${value}`;
 const getValueFromId = (id) => id.split("-")[1];

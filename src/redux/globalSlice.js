@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fakeRequest } from "../helpers/fakeRequest";
 import { stepValueFromLocalStorage, updateStepInLocalStorage } from "../helpers/localStorage";
 
 const defaultGlobalValues = {
@@ -73,19 +74,10 @@ export function createContribution(form) {
     };
     try {
       // await axios.post("https://frontend-assignment-api.goodrequest.dev/api/v1/shelters/contribute", dataForSubmission);
-      await fakeRequest();
+      await fakeRequest("resolve");
     } catch (error) {
       dispatch(setFormSubmissionError(true));
     }
     dispatch(setFormSubmitting(false));
   };
-}
-
-function fakeRequest() {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      console.log("fake request done!");
-      res();
-    }, 200);
-  });
 }

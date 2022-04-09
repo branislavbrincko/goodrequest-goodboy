@@ -14,7 +14,6 @@ function App() {
     dispatch(getShelters());
   }, [dispatch]);
 
-  // Component
   return (
     <Layout>
       <main className="row">

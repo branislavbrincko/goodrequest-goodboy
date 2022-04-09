@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { updateForm } from "../../redux/formSlice";
+import { updateForm } from "../../../redux/formSlice";
 import RowButtonsStandard from "./RowButtonsStandard";
 import RowButtonWithInput from "./RowButtonWithInput";
 
