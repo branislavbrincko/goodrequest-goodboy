@@ -29,8 +29,8 @@ const phonePrefixInputStyles = {
 };
 
 const Label = ({ flag, code }) => (
-  <div>
-    <img src={flag} width="25px" />
+  <div className="country-select-label">
+    <img src={flag} />
     <span style={{ paddingLeft: "3px" }}>{code}</span>
   </div>
 );

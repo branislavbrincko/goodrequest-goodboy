@@ -635,16 +635,19 @@ STEPS
 }
 
 .input.input-phone {
-  padding-left: 9.2rem;
+  padding-left: 9.4rem;
 }
 
 .country-select-wrapper {
   position: absolute;
-  bottom: 0.8rem;
+  bottom: 0.5rem;
   height: 3rem;
   left: 2rem;
 }
 
+.country-select-wrapper img {
+  width: 2.5rem;
+}
 /* NOTES:
 For some reason on mobile the country select is lower than needed 
 and does not align with number input text. Also in Firefox it behaves 
@@ -652,7 +655,11 @@ differently and value needs to be different.
   */
 @media only screen and (max-width: 481px) {
   .country-select-wrapper {
-    bottom: 1rem;
+    bottom: 0.4rem;
+  }
+
+  .country-select-wrapper img {
+    width: 2rem;
   }
 }
 
