@@ -61,8 +61,8 @@ html {
 
 body {
   box-sizing: border-box;
-  font-family: sans-serif;
-  /* font-weight: 400; */
+  font-family: "Public Sans", sans-serif;
+  font-weight: 400;
   color: var(--primary-text-color);
 }
 
@@ -152,6 +152,7 @@ MAIN
   font-size: 4.6rem;
   margin-bottom: 3.25rem;
   color: var(--black);
+  font-weight: 700;
 }
 
 /* 
@@ -230,14 +231,12 @@ INPUTS
 .input-section-title {
   font-size: 1.6rem;
   color: var(--black);
-  font-weight: bold;
-  /* font-weight: 800; */
+  font-weight: 800;
 }
 
 .input-section-additional-text {
   font-size: 1.4rem;
-  font-weight: bold;
-  /* font-weight: 800; */
+  font-weight: 800;
 }
 
 select.input:disabled {
@@ -267,8 +266,7 @@ ROW BUTTONS
   color: var(--black);
   padding: 1rem;
   border-radius: 0.8rem;
-  font-weight: bold;
-  /* font-weight: 800; */
+  font-weight: 800;
   transition: all 200ms;
   position: relative;
 }
@@ -304,8 +302,7 @@ ROW BUTTONS
   border-bottom: 1px solid var(--light-grey);
   background-color: transparent;
   max-width: 85%;
-  font-weight: bold;
-  /* font-weight: 800; */
+  font-weight: 800;
   margin-right: 4px;
   margin-top: 2px;
   text-align: center;
@@ -346,7 +343,7 @@ ACTION BUTTONS
   padding: 2rem 2.5rem;
   border-radius: 1000px;
   font-size: 1.4rem;
-  font-weight: bold;
+  font-weight: 800;
   box-shadow: var(--box-shadow-2);
   transition: all var(--transition-base-ms);
 }
@@ -430,6 +427,7 @@ FOOTER
 .footer-column-title {
   font-size: 1.6rem;
   margin-bottom: 2.5rem;
+  font-weight: 800;
 }
 
 .footer-column-content {
@@ -455,7 +453,7 @@ FOOTER
 }
 
 /* 
-PAGES
+STEPS
 */
 
 .step {
@@ -480,8 +478,7 @@ PAGES
 .input-label {
   color: var(--black);
   font-size: 1.6rem;
-  font-weight: bold;
-  /* font-weight: 800; */
+  font-weight: 800;
 
   position: absolute;
   left: 0;
@@ -489,6 +486,17 @@ PAGES
   top: 15px;
   margin-left: 1px;
   padding-left: var(--input-x-padding);
+}
+
+.input-select-label {
+  color: var(--black);
+  font-size: 1.6rem;
+  font-weight: 800;
+
+  position: absolute;
+  z-index: 5;
+  left: 31px;
+  top: 15px;
 }
 
 .input {
@@ -563,6 +571,7 @@ SUMMARY
   color: var(--black);
   font-size: 1.4rem;
   margin-bottom: 0.8rem;
+  font-weight: 800;
 }
 
 .summary-text {

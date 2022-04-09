@@ -17,7 +17,7 @@ const colourStyles = {
     boxShadow: "none",
   }),
   dropdownIndicator: (styles) => ({ ...styles, marginTop: "-25px" }),
-  placeholder: (styles) => ({ ...styles, color: "var(--primary-text-color)" }),
+  placeholder: (styles) => ({ ...styles, color: "var(--secondary-text-color)" }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => ({
     ...styles,
     fontSize: "16px",
@@ -26,8 +26,6 @@ const colourStyles = {
     cursor: "pointer",
   }),
 };
-
-const labelStyles = { position: "absolute", zIndex: 5, left: "31px", top: "15px", fontSize: "16px", color: "black", fontWeight: "bold" };
 
 const SelectInput = () => {
   const { shelters } = useSelector((state) => state.global);
@@ -43,7 +41,7 @@ const SelectInput = () => {
   return (
     <div style={{ position: "relative", marginBottom: "40px" }}>
       <div className="input-wrapper">
-        <label htmlFor="shelterID" style={labelStyles}>
+        <label htmlFor="shelterID" className="input-select-label">
           Útulok
         </label>
         <Select
