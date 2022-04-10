@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "./App.css";
+import ActionButtons from "./components/ActionButtons";
 import Form from "./components/form/Form";
 import dogImage from "./images/dog-image.png";
 import Layout from "./layout/Layout";
@@ -19,6 +20,7 @@ function App() {
       <main className="row">
         <div className="column">
           <Form />
+          <ActionButtons />
         </div>
         <div className="column">
           <img src={dogImage} alt="dog image" />

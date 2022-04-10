@@ -557,11 +557,24 @@ STEPS
 */
 
 .step {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  transition: all var(--transition-long-ms);
 }
 
 .step.step-active {
-  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+
+/* 
+FORM
+*/
+
+.form {
+  height: 65rem;
+  position: relative;
 }
 
 /* INPUTS */
