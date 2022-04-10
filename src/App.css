@@ -90,28 +90,6 @@ a {
   color: inherit;
 }
 
-/* 
-INPUTS
-*/
-
-.input-section-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.2rem;
-}
-
-.input-section-title {
-  font-size: 1.6rem;
-  color: var(--black);
-  font-weight: 800;
-}
-
-.input-section-additional-text {
-  font-size: 1.4rem;
-  font-weight: 800;
-}
-
 select.input:disabled {
   cursor: not-allowed;
 }
