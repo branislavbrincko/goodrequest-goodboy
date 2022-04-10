@@ -3,6 +3,7 @@ import { updateForm } from "../../../redux/formSlice";
 import { InputWrapper } from "../../InputWrapper.styled";
 import RowButtonsStandard from "./RowButtonsStandard";
 import RowButtonWithInput from "./RowButtonWithInput";
+import { RowButtonsContainer } from "./ContributionValueButtons.styled";
 
 // Main component
 function RowButtons() {
@@ -13,10 +14,10 @@ function RowButtons() {
 
   return (
     <InputWrapper>
-      <div className="row-buttons-container">
+      <RowButtonsContainer>
         <RowButtonsStandard setValue={setValue} setUseCustomValue={setUseCustomValue} />
         <RowButtonWithInput setValue={setValue} setUseCustomValue={setUseCustomValue} />
-      </div>
+      </RowButtonsContainer>
     </InputWrapper>
   );
 }

@@ -2,6 +2,7 @@ import classNames from "classnames";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { validateField } from "../../form/formValidation";
+import { RowInputButton, RowInputButtonWrapper, RowInputButtonInput, RowInputButtonError } from "./RowButton.styled";
 
 function RowButtonWithInput({ setValue, setUseCustomValue }) {
   const [prevCustomValue, setPrevCustomValue] = useState("");
@@ -35,30 +36,20 @@ function RowButtonWithInput({ setValue, setUseCustomValue }) {
 
   const showError = valueError && useCustomValue;
 
-  const inputButtonClasses = classNames("row-button", "row-input-button", {
-    "row-button-active": useCustomValue,
-    "row-button-error": showError,
-  });
-
-  const errorClasses = classNames("row-input-button-error", {
-    "row-input-button-error-active": showError,
-  });
-
   return (
-    <div className="row-input-button-wrapper">
-      <button className={inputButtonClasses} type="button" onClick={handleInputBtnClick}>
-        <input
+    <RowInputButtonWrapper>
+      <RowInputButton type="button" onClick={handleInputBtnClick} active={useCustomValue} error={showError}>
+        <RowInputButtonInput
           type="number"
-          className="row-input-button-input"
           onChange={handleInputBtnChange}
           onFocus={handleInputBtnFocus}
           onBlur={handleInputBtnBlur}
           value={prevCustomValue ? prevCustomValue : ""}
-        ></input>
+        ></RowInputButtonInput>
         <span>€</span>
-      </button>
-      <div className={errorClasses}>{valueError}</div>
-    </div>
+      </RowInputButton>
+      <RowInputButtonError isError={showError}>{valueError}</RowInputButtonError>
+    </RowInputButtonWrapper>
   );
 }
 

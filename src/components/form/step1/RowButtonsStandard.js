@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrorField } from "../../../redux/formSlice";
 import { DEFAULT_VALUES } from "../../form/formDefinition";
+import { RowButton } from "./RowButton.styled";
 
 const setValueToId = (value) => `value-${value}`;
 const getValueFromId = (id) => id.split("-")[1];
@@ -22,12 +23,10 @@ function RowButtonsStandard({ setValue, setUseCustomValue }) {
     const isActive = val === value && !useCustomValue;
     if (isActive && useCustomValue) setUseCustomValue(false);
 
-    const standardButtonClasses = classNames("row-button", { "row-button-active": isActive });
-
     return (
-      <button key={val} className={standardButtonClasses} id={setValueToId(val)} type="button" onClick={handleRowButtonClick}>
+      <RowButton key={val} id={setValueToId(val)} type="button" onClick={handleRowButtonClick} active={isActive}>
         {val} €
-      </button>
+      </RowButton>
     );
   });
 

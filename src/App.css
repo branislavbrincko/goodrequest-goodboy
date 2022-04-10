@@ -29,7 +29,9 @@ VARIABLES
   --transition-long-ms: 500ms;
 }
 
-/* BREAKPOINTS
+/* 
+BREAKPOINTS
+
 breakpoint-mobile: 320px;
 breakpoint-tablet: 481px;
 breakpoint-laptop: 769px;
@@ -90,114 +92,7 @@ a {
   color: inherit;
 }
 
+/* 
 select.input:disabled {
   cursor: not-allowed;
-}
-
-/* 
-ROW BUTTONS
-*/
-
-.row-buttons-container {
-  display: flex;
-  flex-wrap: wrap;
-
-  --buttons-padding: 0.2rem;
-  margin-left: calc(-1 * var(--buttons-padding));
-  margin-right: calc(-1 * var(--buttons-padding));
-}
-
-.row-button {
-  flex-grow: 1;
-  height: 5rem;
-  font-size: 1.6rem;
-  margin: var(--buttons-padding);
-  border: 1px solid var(--light-grey);
-  background-color: transparent;
-  color: var(--black);
-  padding: 1rem;
-  border-radius: 0.8rem;
-  font-weight: 800;
-  transition: all var(--transition-base-ms);
-  position: relative;
-}
-
-.row-button.row-button-active {
-  color: var(--white);
-  background-color: var(--primary-color);
-}
-
-.row-button.row-button-error {
-  border-color: var(--error-color);
-}
-
-.row-button:hover {
-  border-color: var(--primary-color);
-}
-
-.row-button:focus {
-  border-color: var(--primary-color);
-  outline: none;
-}
-
-.row-button.row-button-active:focus {
-  border-color: var(--primary-color-dark);
-  outline: none;
-}
-
-.row-input-button-wrapper {
-  position: relative;
-}
-
-.row-input-button {
-  display: flex;
-  align-items: center;
-  width: 8.5rem;
-  max-width: 20rem;
-}
-
-.row-input-button-input {
-  border: none;
-  border-bottom: 1px solid var(--light-grey);
-  background-color: transparent;
-  max-width: 85%;
-  font-weight: 800;
-  margin-right: 4px;
-  margin-top: 2px;
-  text-align: center;
-}
-
-/* Chrome, Safari, Edge, Opera */
-.row-input-button-input::-webkit-outer-spin-button,
-.row-input-button-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-.row-input-button-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-.row-input-button-input:focus {
-  /* outline: 1px solid var(--white); */
-  outline: none;
-  border: 1px solid var(--white);
-  border-radius: 0.4rem;
-}
-
-.row-input-button-error {
-  font-size: 1.4rem;
-  position: absolute;
-  bottom: 0rem;
-  right: 0;
-  top: 120%;
-  width: 50rem;
-  text-align: right;
-  transition: all var(--transition-long-ms);
-  color: transparent;
-}
-
-.row-input-button-error-active {
-  color: var(--error-color);
-}
+} */
