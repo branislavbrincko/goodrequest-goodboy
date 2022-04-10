@@ -1,16 +1,17 @@
 import React from "react";
 import Footer from "./Footer";
+import { Container, Divider } from "./Layout.styled";
 import Navbar from "./Navbar";
 
 function Layout({ children }) {
   return (
     <div className="App">
       <Navbar />
-      <div className="container">
+      <Container>
         {children}
-        <div className="divider"></div>
+        <Divider />
         <Footer />
-      </div>
+      </Container>
     </div>
   );
 }
