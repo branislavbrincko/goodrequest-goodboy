@@ -111,68 +111,6 @@ HELPERS
 }
 
 /* 
-/* DOUBLE BUTTON 
-*/
-
-.double-button-container {
-  display: flex;
-  height: 18.5rem;
-  margin-bottom: 6rem;
-  --double-button-border-radius: 2.5rem;
-  border-radius: var(--double-button-border-radius);
-}
-
-.double-button {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  font-size: 1.6rem;
-  padding: 2.5rem;
-  text-align: left;
-  font-weight: 600;
-
-  transition: all var(--transition-base-ms);
-}
-
-.double-button.active {
-  color: var(--white);
-  background-image: linear-gradient(to bottom right, var(--primary-color), var(--primary-color-dark));
-  box-shadow: var(--box-shadow-1);
-  z-index: 5;
-}
-
-.double-button:hover {
-  transform: scale(1.015);
-  box-shadow: var(--box-shadow-1);
-  z-index: 10;
-}
-
-.double-button:focus {
-  outline: 1px solid var(--primary-color-dark);
-  z-index: 15;
-}
-
-.double-button:first-child {
-  border-top-left-radius: var(--double-button-border-radius);
-  border-bottom-left-radius: var(--double-button-border-radius);
-}
-
-.double-button:last-child {
-  border-top-right-radius: var(--double-button-border-radius);
-  border-bottom-right-radius: var(--double-button-border-radius);
-}
-
-.double-button-icon {
-  color: var(--secondary-text-color);
-}
-
-.double-button.active .double-button-icon {
-  color: var(--white);
-}
-
-/* 
 INPUTS
 */
 
@@ -359,6 +297,7 @@ STEPS
   opacity: 0;
   position: absolute;
   transition: all var(--transition-long-ms);
+  width: 100%;
 }
 
 .step.step-active {
@@ -527,43 +466,4 @@ SUBMISSION
 
 .submission-result-success {
   color: var(--success-color);
-}
-
-/* 
-LOADER
-*/
-
-.loader-container {
-  display: grid;
-  place-items: center;
-  height: 30rem;
-}
-
-.loader {
-  border: 12px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 12px solid var(--primary-color);
-  width: 80px;
-  height: 80px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 2s linear infinite;
-}
-
-/* Safari */
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }

@@ -1,10 +1,11 @@
 import React from "react";
+import { LoaderContainer, LoaderStyled } from "./Loader.styled";
 
 function Loader() {
   return (
-    <div className="loader-container">
-      <div className="loader"></div>
-    </div>
+    <LoaderContainer>
+      <LoaderStyled />
+    </LoaderContainer>
   );
 }
 
