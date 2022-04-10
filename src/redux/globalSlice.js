@@ -1,6 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { stepValueFromLocalStorage, updateStepInLocalStorage } from "../helpers/localStorage";
+import {
+  langValueFromLocalStorage,
+  stepValueFromLocalStorage,
+  updateLangInLocalStorage,
+  updateStepInLocalStorage,
+} from "../helpers/localStorage";
 import { updateFormErrors } from "./formSlice";
 
 const defaultGlobalValues = {
@@ -9,6 +14,7 @@ const defaultGlobalValues = {
   formSubmitting: false,
   formSubmissionError: null,
   nextButtonDisabled: false,
+  currentLang: langValueFromLocalStorage || "sk",
 };
 
 export const globalSlice = createSlice({
@@ -31,10 +37,15 @@ export const globalSlice = createSlice({
     setNextButtonDisabled: (state, action) => {
       state.nextButtonDisabled = action.payload;
     },
+    setCurrentLang: (state, action) => {
+      state.currentLang = action.payload;
+      updateLangInLocalStorage(action.payload);
+    },
   },
 });
 
-export const { setCurrentStep, setShelters, setFormSubmitting, setFormSubmissionError, setNextButtonDisabled } = globalSlice.actions;
+export const { setCurrentStep, setShelters, setFormSubmitting, setFormSubmissionError, setNextButtonDisabled, setCurrentLang } =
+  globalSlice.actions;
 
 export default globalSlice.reducer;
 

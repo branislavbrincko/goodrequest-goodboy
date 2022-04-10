@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import Select from "react-select";
 import useForm from "../../../hooks/useForm";
 import flagCz from "../../../images/flag-cz.svg";
@@ -27,6 +28,9 @@ const phonePrefixInputOptions = [
 function CountrySelect() {
   const { handleInputChange } = useForm();
   const handlePhonePrefixInpupChange = ({ value }) => handleInputChange(null, "phonePrefix", value);
+  const { phonePrefix } = useSelector((state) => state.form);
+
+  const currentOption = phonePrefixInputOptions.find((opt) => opt.value === phonePrefix);
 
   return (
     <SelectWrapper>
@@ -35,8 +39,8 @@ function CountrySelect() {
         components={{ IndicatorSeparator: () => null, DropdownIndicator: () => null }}
         styles={phonePrefixInputStyles}
         onChange={handlePhonePrefixInpupChange}
-        defaultValue={phonePrefixInputOptions[0]}
         isSearchable={false}
+        value={currentOption}
       />
     </SelectWrapper>
   );

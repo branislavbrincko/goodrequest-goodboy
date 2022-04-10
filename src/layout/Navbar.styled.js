@@ -29,3 +29,30 @@ export const NavbarStyled = styled.nav`
     outline: none;
   }
 `;
+
+export const IconsContainer = styled.div`
+  padding-top: 0.6rem;
+`;
+
+export const langInputStyles = {
+  control: (styles, { isFocused }) => ({
+    ...styles,
+    cursor: "pointer",
+    boxShadow: "none",
+    fontSize: "1.4rem",
+    borderRadius: "0.4rem",
+    backgroundColor: "transparent",
+    borderColor: isFocused ? "var(--primary-color)" : "transparent",
+    "&:hover": { borderColor: "var(--primary-color)" },
+    minHeight: "0",
+  }),
+  valueContainer: (styles) => ({ ...styles, padding: "0", color: "red" }),
+  singleValue: (styles) => ({ ...styles, color: "var(--secondary-text-color)" }),
+  option: (styles, { data, isDisabled, isFocused, isSelected }) => ({
+    ...styles,
+    fontSize: "1.4rem",
+    backgroundColor: isDisabled ? undefined : isSelected ? "var(--primary-color)" : isFocused ? "var(--light-grey)" : undefined,
+    color: isDisabled ? "var(--lightgrey)" : isSelected ? "white" : data.color,
+    cursor: "pointer",
+  }),
+};

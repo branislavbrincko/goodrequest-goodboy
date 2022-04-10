@@ -1,13 +1,14 @@
-import classNames from "classnames";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { validateField } from "../../form/formValidation";
-import { RowInputButton, RowInputButtonWrapper, RowInputButtonInput, RowInputButtonError } from "./RowButton.styled";
+import { RowInputButton, RowInputButtonError, RowInputButtonInput, RowInputButtonWrapper } from "./RowButton.styled";
 
 function RowButtonWithInput({ setValue, setUseCustomValue }) {
   const [prevCustomValue, setPrevCustomValue] = useState("");
   const { useCustomValue } = useSelector((state) => state.form);
   const valueError = useSelector((state) => state.form.errors.value);
+  const { t } = useTranslation();
 
   const handleInputBtnChange = (e) => {
     setUseCustomValue(true);
@@ -48,7 +49,7 @@ function RowButtonWithInput({ setValue, setUseCustomValue }) {
         ></RowInputButtonInput>
         <span>€</span>
       </RowInputButton>
-      <RowInputButtonError isError={showError}>{valueError}</RowInputButtonError>
+      <RowInputButtonError isError={showError}>{t(valueError)}</RowInputButtonError>
     </RowInputButtonWrapper>
   );
 }

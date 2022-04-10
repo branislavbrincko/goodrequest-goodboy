@@ -9,7 +9,7 @@ export const DEFAULT_VALUES = ["5", "10", "20", "30", "50", "100"];
 // Validation schemas for fields
 //
 
-const valueSchema = yup.number().typeError("Zadajte sumu!").required("Zadajte sumu!").positive("Zadajte kladnú sumu!");
+const valueSchema = yup.number().typeError("EnterValue").required("EnterValue").positive("EnterPositiveValue");
 
 const shelterIDSchema = (formState) => {
   const testFunction = (value) => {
@@ -17,7 +17,7 @@ const shelterIDSchema = (formState) => {
     if (useShelterID) return value > 0;
     return true;
   };
-  return yup.number().test("test-shelter-ID", "Vyberte zo zoznamu!", testFunction);
+  return yup.number().test("test-shelter-ID", "ChooseFromList", testFunction);
 };
 
 const firstNameSchema = yup
