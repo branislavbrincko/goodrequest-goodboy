@@ -1,14 +1,11 @@
 import React from "react";
+import { MainHeading } from "../../MainHeading.styled";
 import Summary from "../../Summary";
 
 function FormSubmissionSuccess() {
-  const style = { marginBottom: "5rem" };
-
   return (
     <>
-      <h1 className="main-heading" style={style}>
-        Hotovo!
-      </h1>
+      <MainHeading>Hotovo!</MainHeading>
       <div className="submission-result submission-result-success">Ďakujeme za Váš príspevok.</div>
       <Summary />
     </>

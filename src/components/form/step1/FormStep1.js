@@ -5,13 +5,14 @@ import InputSectionInfo from "../../InputSectionInfo";
 import ContributionValueButtons from "./ContributionValueButtons";
 import ShelterSelect from "./ShelterSelect";
 import FormStep from "../FormStep";
+import { MainHeading } from "../../MainHeading.styled";
 
 function FormStep1() {
   const { useShelterID } = useSelector((state) => state.form);
 
   return (
     <FormStep stepId={0}>
-      <h1 className="main-heading">Vyberte si možnosť, ako chcete prispieť</h1>
+      <MainHeading smallBottomMargin>Vyberte si možnosť, ako chcete prispieť</MainHeading>
       <ContributionDoubleButton />
       <InputSectionInfo title="O projekte" required={useShelterID} />
       <ShelterSelect />

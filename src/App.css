@@ -110,43 +110,6 @@ HELPERS
   justify-content: center;
 }
 
-.main-heading {
-  font-size: 4.6rem;
-  margin-bottom: 3.25rem;
-  color: var(--black);
-  font-weight: 700;
-}
-
-/* 
-/* STEP INDICATOR 
-*/
-
-.step-indicator {
-  display: flex;
-  margin-bottom: 2.8rem;
-  position: relative;
-}
-
-.step-indicator-item {
-  width: 2.6rem;
-  height: 0.6rem;
-  border-radius: 10px;
-  background-color: var(--light-grey);
-  margin-right: 0.5rem;
-  transition: all var(--transition-base-ms);
-}
-
-.step-indicator-item-active {
-  width: 4.4rem;
-  background: linear-gradient(94.75deg, rgba(0, 0, 0, 0.24) 0%, rgba(0, 0, 0, 0) 100.7%), var(--primary-color);
-}
-
-.step-indicator-item-final {
-  width: 8rem;
-  position: absolute;
-  background: linear-gradient(94.75deg, rgba(0, 0, 0, 0.24) 0%, rgba(0, 0, 0, 0) 100.7%), var(--primary-color);
-}
-
 /* 
 /* DOUBLE BUTTON 
 */
