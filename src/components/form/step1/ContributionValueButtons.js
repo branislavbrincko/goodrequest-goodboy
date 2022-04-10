@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { updateForm } from "../../../redux/formSlice";
+import { InputWrapper } from "../../InputWrapper.styled";
 import RowButtonsStandard from "./RowButtonsStandard";
 import RowButtonWithInput from "./RowButtonWithInput";
 
@@ -11,10 +12,12 @@ function RowButtons() {
   const setValue = (newValue) => dispatch(updateForm({ value: newValue }));
 
   return (
-    <div className="row-buttons-container">
-      <RowButtonsStandard setValue={setValue} setUseCustomValue={setUseCustomValue} />
-      <RowButtonWithInput setValue={setValue} setUseCustomValue={setUseCustomValue} />
-    </div>
+    <InputWrapper>
+      <div className="row-buttons-container">
+        <RowButtonsStandard setValue={setValue} setUseCustomValue={setUseCustomValue} />
+        <RowButtonWithInput setValue={setValue} setUseCustomValue={setUseCustomValue} />
+      </div>
+    </InputWrapper>
   );
 }
 

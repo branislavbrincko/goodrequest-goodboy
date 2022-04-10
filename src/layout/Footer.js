@@ -1,10 +1,18 @@
 import logoPart1 from "../images/logo-part-1.png";
 import logoPart2 from "../images/logo-part-2.png";
-import { FooterColumn, FooterColumnContent, FooterColumnTitle, FooterLink, FooterLinkItem, LogoImages, StyledFooter } from "./Footer.styled";
+import {
+  FooterColumn,
+  FooterColumnContent,
+  FooterColumnTitle,
+  FooterLink,
+  FooterLinkItem,
+  LogoImages,
+  FooterStyled,
+} from "./Footer.styled";
 
 function Footer() {
   return (
-    <StyledFooter>
+    <FooterStyled>
       <FooterColumn>
         <LogoImages>
           <img src={logoPart1} alt="logo image"></img>
@@ -29,13 +37,17 @@ function Footer() {
       </FooterColumn>
       <FooterColumn>
         <FooterColumnTitle>Nadácia Good Boy</FooterColumnTitle>
-        <FooterColumnContent>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in interdum ipsum, sit amet.</FooterColumnContent>
+        <FooterColumnContent>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in interdum ipsum, sit amet.
+        </FooterColumnContent>
       </FooterColumn>
       <FooterColumn>
         <FooterColumnTitle>Nadácia Good Boy</FooterColumnTitle>
-        <FooterColumnContent>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in interdum ipsum, sit amet.</FooterColumnContent>
+        <FooterColumnContent>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in interdum ipsum, sit amet.
+        </FooterColumnContent>
       </FooterColumn>
-    </StyledFooter>
+    </FooterStyled>
   );
 }
 

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { breakpoints } from "../App.styled";
 
-export const StyledFooter = styled.footer`
+export const FooterStyled = styled.footer`
   display: flex;
   flex-wrap: wrap;
   font-size: 1.6rem;

@@ -1,31 +1,9 @@
 import { useSelector } from "react-redux";
+import Select from "react-select";
 import useForm from "../../../hooks/useForm";
 import InputErrorMessage from "../../InputErrorMessage";
-import Select from "react-select";
-
-const colourStyles = {
-  control: (styles, { isFocused }) => ({
-    ...styles,
-    height: "7rem",
-    paddingTop: "2.4rem",
-    paddingLeft: "1.4rem",
-    fontSize: "1.6rem",
-    borderRadius: "8px",
-    cursor: "pointer",
-    borderColor: isFocused ? "var(--primary-color)" : "var(--light-grey)",
-    "&:hover": { borderColor: "var(--primary-color)" },
-    boxShadow: "none",
-  }),
-  dropdownIndicator: (styles) => ({ ...styles, marginTop: "-2.5rem" }),
-  placeholder: (styles) => ({ ...styles, color: "var(--secondary-text-color)" }),
-  option: (styles, { data, isDisabled, isFocused, isSelected }) => ({
-    ...styles,
-    fontSize: "1.6rem",
-    backgroundColor: isDisabled ? undefined : isSelected ? "var(--primary-color)" : isFocused ? "var(--light-grey)" : undefined,
-    color: isDisabled ? "var(--lightgrey)" : isSelected ? "white" : data.color,
-    cursor: "pointer",
-  }),
-};
+import { InputWrapper } from "../../InputWrapper.styled";
+import { SelectLabelStyled, shelterSelectInputStyles, ShelterSelectWrapper } from "./ShelterSelect.styled";
 
 const SelectInput = () => {
   const { shelters } = useSelector((state) => state.global);
@@ -39,23 +17,21 @@ const SelectInput = () => {
   const handleChange = ({ value }) => handleInputChange(null, "shelterID", parseInt(value));
 
   return (
-    <div style={{ position: "relative", marginBottom: "40px" }}>
-      <div className="input-wrapper">
-        <label htmlFor="shelterID" className="input-select-label">
-          Útulok
-        </label>
+    <ShelterSelectWrapper>
+      <InputWrapper>
+        <SelectLabelStyled htmlFor="shelterID">Útulok</SelectLabelStyled>
         <Select
           id="shelterID"
           options={options}
           placeholder="Vyberte útulok zo zoznamu"
-          styles={colourStyles}
+          styles={shelterSelectInputStyles}
           components={{ IndicatorSeparator: () => null }}
           onChange={handleChange}
           value={currentOption}
         />
-      </div>
+      </InputWrapper>
       <InputErrorMessage fieldName="shelterID" />
-    </div>
+    </ShelterSelectWrapper>
   );
 };
 

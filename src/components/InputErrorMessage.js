@@ -1,15 +1,13 @@
-import classNames from "classnames";
 import React from "react";
 import { useSelector } from "react-redux";
+import { InputErrorMessageStyled } from "./InputErrorMessage.styled";
 
 function InputErrorMessage({ fieldName }) {
   const errors = useSelector((state) => state.form.errors);
+  const error = errors[fieldName];
+  const active = !!error;
 
-  const inputErrorMessageClasses = classNames("input-error-message", {
-    "input-error-message-active": errors[fieldName],
-  });
-
-  return <div className={inputErrorMessageClasses}> {errors[fieldName]} </div>;
+  return <InputErrorMessageStyled active={active}>{error}</InputErrorMessageStyled>;
 }
 
 export default InputErrorMessage;

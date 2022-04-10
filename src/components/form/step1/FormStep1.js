@@ -1,11 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import ContributionDoubleButton from "./ContributionDoubleButton";
 import InputSectionInfo from "../../InputSectionInfo";
+import { MainHeading } from "../../MainHeading.styled";
+import FormStep from "../FormStep";
+import ContributionDoubleButton from "./ContributionDoubleButton";
 import ContributionValueButtons from "./ContributionValueButtons";
 import ShelterSelect from "./ShelterSelect";
-import FormStep from "../FormStep";
-import { MainHeading } from "../../MainHeading.styled";
 
 function FormStep1() {
   const { useShelterID } = useSelector((state) => state.form);
@@ -17,9 +17,7 @@ function FormStep1() {
       <InputSectionInfo title="O projekte" required={useShelterID} />
       <ShelterSelect />
       <InputSectionInfo title="Suma, ktorou chcem prispieť" />
-      <div className="input-wrapper">
-        <ContributionValueButtons />
-      </div>
+      <ContributionValueButtons />
     </FormStep>
   );
 }

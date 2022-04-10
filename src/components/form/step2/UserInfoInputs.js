@@ -1,85 +1,69 @@
-import classNames from "classnames";
 import { useSelector } from "react-redux";
-import { formatPhoneNumber, onlyPhoneNumberCharacters } from "../../../helpers/phoneNumber";
 import useForm from "../../../hooks/useForm";
 import InputErrorMessage from "../../InputErrorMessage";
+import { InputWrapper } from "../../InputWrapper.styled";
 import CountrySelect from "./CountrySelect";
+import { InputLabelStyled, InputStyled } from "./UserInfoInputs.styled";
 
 function UserInfoSubform() {
   const { firstName, lastName, email, phone } = useSelector((state) => state.form);
   const errors = useSelector((state) => state.form.errors);
-  const { handleInputChange } = useForm();
-
-  const handlePhoneInputChange = (e) => {
-    const inputValue = e.target.value;
-
-    // input is of type string, but we don't want to allow user
-    // to enter any letters, only numbers and empty character
-    const valueOk = onlyPhoneNumberCharacters(inputValue);
-    if (!valueOk) return;
-
-    // format number ("123123123" -> "123 123 123")
-    e.target.value = formatPhoneNumber(inputValue);
-    handleInputChange(e);
-  };
-
-  const getClasses = (fieldName) => classNames("input", { "input-error": errors[fieldName] });
-  const phoneInputClasses = classNames("input", "input-phone", { "input-error": errors["phone"] });
+  const { handleInputChange, handlePhoneInputChange } = useForm();
 
   return (
     <div>
-      <div className="input-wrapper">
-        <label htmlFor="firstName" className="input-label">
-          Meno*
-        </label>
-        <input
-          className={getClasses("firstName")}
+      <InputWrapper>
+        <InputLabelStyled htmlFor="firstName">Meno*</InputLabelStyled>
+        <InputStyled
           type="text"
           name="firstName"
           id="firstName"
           placeholder="Zadajte Vaše meno"
           onChange={handleInputChange}
           value={firstName}
-        ></input>
-      </div>
+          error={errors["firstName"]}
+        ></InputStyled>
+      </InputWrapper>
       <InputErrorMessage fieldName="firstName" />
-      <div className="input-wrapper">
-        <label htmlFor="lastName" className="input-label">
-          Priezvisko*
-        </label>
-        <input
-          className={getClasses("lastName")}
+      <InputWrapper>
+        <InputLabelStyled htmlFor="lastName">Priezvisko*</InputLabelStyled>
+        <InputStyled
           type="text"
           name="lastName"
           id="lastName"
           placeholder="Zadajte Vaše priezvisko"
           onChange={handleInputChange}
           value={lastName}
-        ></input>
-      </div>
+          error={errors["lastName"]}
+        ></InputStyled>
+      </InputWrapper>
       <InputErrorMessage fieldName="lastName" />
-      <div className="input-wrapper">
-        <label htmlFor="email" className="input-label">
-          E-mailová adresa*
-        </label>
-        <input
-          className={getClasses("email")}
+      <InputWrapper>
+        <InputLabelStyled htmlFor="email">E-mailová adresa*</InputLabelStyled>
+        <InputStyled
           type="email"
           name="email"
           id="email"
           placeholder="Zadajte Váš e-mail"
           onChange={handleInputChange}
           value={email}
-        ></input>
-      </div>
+          error={errors["email"]}
+        ></InputStyled>
+      </InputWrapper>
       <InputErrorMessage fieldName="email" />
-      <div className="input-wrapper">
+      <InputWrapper>
         <CountrySelect />
-        <label htmlFor="phone" className="input-label">
-          Telefónne číslo
-        </label>
-        <input className={phoneInputClasses} type="text" name="phone" id="phone" onChange={handlePhoneInputChange} value={phone}></input>
-      </div>
+        <InputLabelStyled htmlFor="phone">Telefónne číslo</InputLabelStyled>
+        <InputStyled
+          type="text"
+          name="phone"
+          id="phone"
+          onChange={handlePhoneInputChange}
+          value={phone}
+          error={errors["phone"]}
+          isPhone
+        ></InputStyled>
+      </InputWrapper>
       <InputErrorMessage fieldName="phone" />
     </div>
   );

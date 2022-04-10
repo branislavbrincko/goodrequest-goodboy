@@ -42,6 +42,7 @@ function ActionButtons() {
   const submitButtonDisabled = consent;
   const nextButtonDisabled = isFormStepInvalid(currentStep);
 
+  // Components
   const ButtonBack = () => (
     <ActionButtonBackStyled type="button" onClick={goToPrevStep}>
       Späť
@@ -68,7 +69,6 @@ function ActionButtons() {
 
   // Component
   return (
-    // <div className={actionButtonsContainerClasses}>
     <ActionButtonsContainer currentStep={currentStep}>
       {isFormStep(0) && <ButtonNext />}
       {isFormStep(1) && (
