@@ -23,23 +23,23 @@ const shelterIDSchema = (formState) => {
 const firstNameSchema = yup
   .string()
   .trim()
-  .required("Meno je povinné pole!")
-  .min(2, "Meno musí mať aspoň 2 znaky!")
-  .max(20, "Meno musí mať maximálne 20 znakov!");
+  .required("FirstNameIsRequiredField")
+  .min(2, "FirstNameMustHaveAtLeast2characters")
+  .max(20, "FirstNameMustHaveMaximum20characters");
 
 const lastNameSchema = yup
   .string()
   .trim()
-  .required("Priezvisko je povinné pole!")
-  .min(2, "Priezvisko musí mať aspoň 2 znaky!")
-  .max(30, "Priezvisko musí mať maximálne 30 znakov!");
+  .required("LastNameIsRequiredField")
+  .min(2, "LastNameMustHaveAtLeast2characters")
+  .max(30, "LastNameMustHaveMaximum30characters");
 
-const emailSchema = yup.string().email("Email musí mať správny tvar!").required("Email je povinné pole!");
+const emailSchema = yup.string().email("EmailMustHaveValidFormat").required("EmailIsRequiredField");
 
 const phoneSchema = yup
   .string()
   .trim()
-  .matches(/^$|([0-9]{3} [0-9]{3} [0-9]{3})$/, "Zadajte telefónne číslo v tvare xxx xxx xxx"); // matches number in format "xxx xxx xxx" or empty string
+  .matches(/^$|([0-9]{3} [0-9]{3} [0-9]{3})$/, "EnterPhoneNumberInFormat_xxx_xxx_xxx"); // matches number in format "xxx xxx xxx" or empty string
 
 //
 // Definition

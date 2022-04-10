@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import useForm from "../../../hooks/useForm";
 import InputErrorMessage from "../../InputErrorMessage";
@@ -9,11 +10,12 @@ function UserInfoSubform() {
   const { firstName, lastName, email, phone } = useSelector((state) => state.form);
   const errors = useSelector((state) => state.form.errors);
   const { handleInputChange, handlePhoneInputChange } = useForm();
+  const { t } = useTranslation();
 
   return (
     <div>
       <InputWrapper>
-        <InputLabelStyled htmlFor="firstName">Meno*</InputLabelStyled>
+        <InputLabelStyled htmlFor="firstName">{t("FirstName")}*</InputLabelStyled>
         <InputStyled
           type="text"
           name="firstName"
@@ -26,7 +28,7 @@ function UserInfoSubform() {
       </InputWrapper>
       <InputErrorMessage fieldName="firstName" />
       <InputWrapper>
-        <InputLabelStyled htmlFor="lastName">Priezvisko*</InputLabelStyled>
+        <InputLabelStyled htmlFor="lastName">{t("LastName")}*</InputLabelStyled>
         <InputStyled
           type="text"
           name="lastName"
@@ -39,7 +41,7 @@ function UserInfoSubform() {
       </InputWrapper>
       <InputErrorMessage fieldName="lastName" />
       <InputWrapper>
-        <InputLabelStyled htmlFor="email">E-mailová adresa*</InputLabelStyled>
+        <InputLabelStyled htmlFor="email">{t("Email")}*</InputLabelStyled>
         <InputStyled
           type="email"
           name="email"
@@ -53,7 +55,7 @@ function UserInfoSubform() {
       <InputErrorMessage fieldName="email" />
       <InputWrapper>
         <CountrySelect />
-        <InputLabelStyled htmlFor="phone">Telefónne číslo</InputLabelStyled>
+        <InputLabelStyled htmlFor="phone">{t("PhoneNumber")}</InputLabelStyled>
         <InputStyled
           type="text"
           name="phone"
