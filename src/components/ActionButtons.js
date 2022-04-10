@@ -1,8 +1,8 @@
-import classNames from "classnames";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { resetForm } from "../redux/formSlice";
 import { createContribution, setCurrentStep } from "../redux/globalSlice";
+import { ActionButtonBackStyled, ActionButtonNextStyled, ActionButtonsContainer } from "./ActionButtons.styled";
 import { validateStep, isFormStepInvalid } from "./form/formValidation";
 
 function ActionButtons() {
@@ -42,43 +42,34 @@ function ActionButtons() {
   const submitButtonDisabled = consent;
   const nextButtonDisabled = isFormStepInvalid(currentStep);
 
-  // Classes
-  const actionButtonsContainerClasses = classNames("action-buttons-container", {
-    "justify-end": isFormStep(0),
-    "justify-between": !isFormStep(0) && !isFormStep(3),
-    "justify-center": isFormStep(3),
-  });
-  const actionButtonBackClasses = classNames("action-button", "action-button-back", {
-    "d-hidden": isFormStep(0),
-  });
-
   const ButtonBack = () => (
-    <button className={actionButtonBackClasses} type="button" onClick={goToPrevStep}>
+    <ActionButtonBackStyled type="button" onClick={goToPrevStep}>
       Späť
-    </button>
+    </ActionButtonBackStyled>
   );
 
   const ButtonAgain = () => (
-    <button className="action-button action-button-next" type="button" onClick={goToFirstStep}>
+    <ActionButtonNextStyled type="button" onClick={goToFirstStep}>
       Vrátiť sa na začiatok
-    </button>
+    </ActionButtonNextStyled>
   );
 
   const ButtonSubmit = () => (
-    <button className="action-button action-button-next" type="submit" onClick={submitForm} disabled={!submitButtonDisabled}>
+    <ActionButtonNextStyled type="submit" onClick={submitForm} disabled={!submitButtonDisabled}>
       Odoslať formulár
-    </button>
+    </ActionButtonNextStyled>
   );
 
   const ButtonNext = () => (
-    <button className="action-button action-button-next" type="button" onClick={goToNextStep} disabled={nextButtonDisabled}>
+    <ActionButtonNextStyled type="button" onClick={goToNextStep} disabled={nextButtonDisabled}>
       Pokračovať
-    </button>
+    </ActionButtonNextStyled>
   );
 
   // Component
   return (
-    <div className={actionButtonsContainerClasses}>
+    // <div className={actionButtonsContainerClasses}>
+    <ActionButtonsContainer currentStep={currentStep}>
       {isFormStep(0) && <ButtonNext />}
       {isFormStep(1) && (
         <>
@@ -93,7 +84,7 @@ function ActionButtons() {
         </>
       )}
       {isFormStep(3) && <ButtonAgain />}
-    </div>
+    </ActionButtonsContainer>
   );
 }
 

@@ -244,76 +244,6 @@ ROW BUTTONS
   color: var(--error-color);
 }
 
-/* 
-ACTION BUTTONS
-*/
-
-.action-buttons-container {
-  display: flex;
-  margin-top: 8rem;
-}
-
-.action-button {
-  height: 6rem;
-  padding: 2rem 2.5rem;
-  border-radius: 1000px;
-  font-size: 1.4rem;
-  font-weight: 800;
-  box-shadow: var(--box-shadow-2);
-  transition: all var(--transition-base-ms);
-}
-
-.action-button:hover {
-  transform: scale(1.02);
-  box-shadow: var(--box-shadow-3);
-}
-
-.action-button:focus {
-  outline: 1px solid var(--primary-color-dark);
-  border-color: var(--primary-color);
-}
-
-.action-button-next {
-  background-color: var(--primary-color);
-  color: var(--white);
-}
-
-.action-button-next:disabled {
-  background-color: var(--secondary-text-color);
-  transform: none;
-  cursor: not-allowed;
-}
-
-.action-button-back {
-  background-color: var(--primay-color-light);
-}
-
-/* 
-STEPS
-*/
-
-.step {
-  visibility: hidden;
-  opacity: 0;
-  position: absolute;
-  transition: all var(--transition-long-ms);
-  width: 100%;
-}
-
-.step.step-active {
-  visibility: visible;
-  opacity: 1;
-}
-
-/* 
-FORM
-*/
-
-.form {
-  height: 65rem;
-  position: relative;
-}
-
 /* INPUTS */
 
 .input-wrapper {
@@ -417,25 +347,6 @@ differently and value needs to be different.
   .country-select-wrapper {
     bottom: 0.3rem;
   }
-}
-
-/* 
-SUMMARY
-*/
-
-.summary-row {
-  margin-bottom: 2.2rem;
-}
-
-.summary-heading {
-  color: var(--black);
-  font-size: 1.4rem;
-  margin-bottom: 0.8rem;
-  font-weight: 800;
-}
-
-.summary-text {
-  font-size: 1.6rem;
 }
 
 /* 
