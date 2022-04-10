@@ -42,6 +42,7 @@ export const phonePrefixInputStyles = {
   }),
   placeholder: (styles) => ({ ...styles, color: "var(--primary-text-color)" }),
   valueContainer: (styles) => ({ ...styles, padding: "0" }),
+  singleValue: (styles) => ({ ...styles, color: "var(--primary-text-color)" }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => ({
     ...styles,
     fontSize: "1.6rem",

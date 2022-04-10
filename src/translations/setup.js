@@ -45,6 +45,9 @@ const translationsSk = {
   GoBackToBeginning: "Vrátiť sa na začiatok",
   SubmitForm: "Odoslať formulár",
   Continue: "Pokračovať",
+  EnterYourFirstName: "Zadajte Vaše meno",
+  EnterYourLastName: "Zadajte Vaše priezvisko",
+  EnterYourEmail: "Zadajte Váš e-mail",
 };
 
 const translationsCz = {
@@ -91,6 +94,9 @@ const translationsCz = {
   GoBackToBeginning: "Vrátit se na začátek",
   SubmitForm: "Odeslat formulář",
   Continue: "Pokračovat",
+  EnterYourFirstName: "Zadejte Vaše jméno",
+  EnterYourLastName: "Zadejte Vaše příjmení",
+  EnterYourEmail: "Zadejte Váš e-mail",
 };
 
 i18n.use(initReactI18next).init({

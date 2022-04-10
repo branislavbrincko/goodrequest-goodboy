@@ -20,7 +20,7 @@ function UserInfoSubform() {
           type="text"
           name="firstName"
           id="firstName"
-          placeholder="Zadajte Vaše meno"
+          placeholder={t("EnterYourFirstName")}
           onChange={handleInputChange}
           value={firstName}
           error={errors["firstName"]}
@@ -33,7 +33,7 @@ function UserInfoSubform() {
           type="text"
           name="lastName"
           id="lastName"
-          placeholder="Zadajte Vaše priezvisko"
+          placeholder={t("EnterYourLastName")}
           onChange={handleInputChange}
           value={lastName}
           error={errors["lastName"]}
@@ -46,7 +46,7 @@ function UserInfoSubform() {
           type="email"
           name="email"
           id="email"
-          placeholder="Zadajte Váš e-mail"
+          placeholder={t("EnterYourEmail")}
           onChange={handleInputChange}
           value={email}
           error={errors["email"]}
