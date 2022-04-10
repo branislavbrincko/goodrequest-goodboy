@@ -46,7 +46,7 @@ export const langInputStyles = {
     "&:hover": { borderColor: "var(--primary-color)" },
     minHeight: "0",
   }),
-  valueContainer: (styles) => ({ ...styles, padding: "0", color: "red" }),
+  valueContainer: (styles) => ({ ...styles, paddingRight: "0" }),
   singleValue: (styles) => ({ ...styles, color: "var(--secondary-text-color)" }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => ({
     ...styles,
@@ -54,5 +54,6 @@ export const langInputStyles = {
     backgroundColor: isDisabled ? undefined : isSelected ? "var(--primary-color)" : isFocused ? "var(--light-grey)" : undefined,
     color: isDisabled ? "var(--lightgrey)" : isSelected ? "white" : data.color,
     cursor: "pointer",
+    textAlign: "center",
   }),
 };
