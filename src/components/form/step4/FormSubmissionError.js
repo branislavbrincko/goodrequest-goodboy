@@ -1,12 +1,15 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { MainHeading } from "../../MainHeading.styled";
 import { FormSubmissionResult } from "./FormSubmissionResult.styled";
 
 function FormSubmissionError() {
+  const { t } = useTranslation();
+
   return (
     <>
-      <MainHeading>Chyba :( </MainHeading>
-      <FormSubmissionResult error>Pri odosielaní formulára nastala chyba. Skúste to neskôr...</FormSubmissionResult>
+      <MainHeading>{t("Error")} :( </MainHeading>
+      <FormSubmissionResult error>{t("ErrorWhileSubmittingTryAgain")}</FormSubmissionResult>
     </>
   );
 }

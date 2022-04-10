@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { resetForm } from "../redux/formSlice";
 import { createContribution, setCurrentStep } from "../redux/globalSlice";
@@ -7,6 +8,7 @@ import { validateStep, isFormStepInvalid } from "./form/formValidation";
 
 function ActionButtons() {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const { currentStep } = useSelector((state) => state.global);
   const { consent } = useSelector((state) => state.form);
   const { form } = useSelector((state) => state);
@@ -45,25 +47,25 @@ function ActionButtons() {
   // Components
   const ButtonBack = () => (
     <ActionButtonBackStyled type="button" onClick={goToPrevStep}>
-      Späť
+      {t("Back")}
     </ActionButtonBackStyled>
   );
 
   const ButtonAgain = () => (
     <ActionButtonNextStyled type="button" onClick={goToFirstStep}>
-      Vrátiť sa na začiatok
+      {t("GoBackToBeginning")}
     </ActionButtonNextStyled>
   );
 
   const ButtonSubmit = () => (
     <ActionButtonNextStyled type="submit" onClick={submitForm} disabled={!submitButtonDisabled}>
-      Odoslať formulár
+      {t("SubmitForm")}
     </ActionButtonNextStyled>
   );
 
   const ButtonNext = () => (
     <ActionButtonNextStyled type="button" onClick={goToNextStep} disabled={nextButtonDisabled}>
-      Pokračovať
+      {t("Continue")}
     </ActionButtonNextStyled>
   );
 

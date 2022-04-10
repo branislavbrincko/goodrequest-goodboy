@@ -29,6 +29,22 @@ const translationsSk = {
   EmailMustHaveValidFormat: "Email musí mať správny tvar!",
   EmailIsRequiredField: "Email je povinné pole!",
   EnterPhoneNumberInFormat_xxx_xxx_xxx: "Zadajte telefónne číslo v tvare xxx xxx xxx",
+  CheckYourInformation: "Skontrolujte si zadané údaje",
+  HowIwantToHelp: "Akou formou chcem pomôcť",
+  IwantToSupportShelter: "Chcem finančne prispieť konkrétnemu útulku",
+  IwantToSupportOrganisation: "Chcem finančne prispieť celej nadácii",
+  ShelterIwantSupport: "Najviac mi záleží na útulku",
+  AmountIwantToGive: "Suma ktorou chcem pomôcť",
+  FullName: "Meno a priezvisko",
+  IgiveConsent: "Súhlasím so spracovaním mojich osobných údajov",
+  ErrorWhileSubmittingTryAgain: "Pri odosielaní formulára nastala chyba. Skúste to neskôr...",
+  Error: "Chyba",
+  Done: "Hotovo!",
+  ThankYouForContribution: "Ďakujeme za Váš príspevok.",
+  Back: "Späť",
+  GoBackToBeginning: "Vrátiť sa na začiatok",
+  SubmitForm: "Odoslať formulár",
+  Continue: "Pokračovať",
 };
 
 const translationsCz = {
@@ -59,9 +75,23 @@ const translationsCz = {
   EmailMustHaveValidFormat: "Email musí mít správný tvar!",
   EmailIsRequiredField: "Email je povinné pole!",
   EnterPhoneNumberInFormat_xxx_xxx_xxx: "Zadejte telefonní číslo ve tvaru xxx xxx xxx",
+  CheckYourInformation: "Zkontrolujte si zadané údaje",
+  HowIwantToHelp: "Jakou formou chci pomoci",
+  IwantToSupportShelter: "Chci finančně přispět konkrétnímu útulku",
+  IwantToSupportOrganisation: "Chci finančně přispět celé nadaci",
+  ShelterIwantSupport: "Nejvíce mi záleží na útulku",
+  AmountIwantToGive: "Suma kterou chci pomoci",
+  FullName: "Jméno a příjmení",
+  IgiveConsent: "Souhlasím se zpracováním mých osobních údajů",
+  ErrorWhileSubmittingTryAgain: "Při odesílání formuláře nastala chyba. Zkuste to později...",
+  Error: "Chyba",
+  Done: "Hotovo!",
+  ThankYouForContribution: "Děkujeme za Váš příspěvek.",
+  Back: "Zpět",
+  GoBackToBeginning: "Vrátit se na začátek",
+  SubmitForm: "Odeslat formulář",
+  Continue: "Pokračovat",
 };
-
-console.log("setting up translations...");
 
 i18n.use(initReactI18next).init({
   resources: {

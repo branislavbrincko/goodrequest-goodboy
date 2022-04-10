@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import useForm from "../../../hooks/useForm";
 import Checkbox from "../../Checkbox";
@@ -10,13 +11,14 @@ import FormStep from "../FormStep";
 function FormStep3() {
   const { handleInputChange } = useForm();
   const { consent } = useSelector((state) => state.form);
+  const { t } = useTranslation();
 
   return (
     <FormStep stepId={2}>
-      <MainHeading>Skontrolujte si zadané údaje</MainHeading>
+      <MainHeading>{t("CheckYourInformation")}</MainHeading>
       <Summary />
       <CheckboxContainer>
-        <Checkbox name="consent" label="Súhlasím so spracovaním mojich osobných údajov" checked={consent} onChange={handleInputChange} />
+        <Checkbox name="consent" label={t("IgiveConsent")} checked={consent} onChange={handleInputChange} />
       </CheckboxContainer>
     </FormStep>
   );
