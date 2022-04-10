@@ -44,6 +44,8 @@ export function getShelters() {
       const response = await axios.get("https://frontend-assignment-api.goodrequest.dev/api/v1/shelters");
       const { shelters } = response.data;
       dispatch(setShelters(shelters));
+      // Clear error
+      dispatch(updateFormErrors({ shelterID: "" }));
     } catch (error) {
       console.error({ error }); // TODO: for testing, delete this
       // NOTE: some better handling would probably be needed for this situation
