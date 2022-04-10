@@ -91,26 +91,6 @@ a {
 }
 
 /* 
-HELPERS
-*/
-
-.d-hidden {
-  display: none;
-}
-
-.justify-end {
-  justify-content: flex-end;
-}
-
-.justify-between {
-  justify-content: space-between;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-/* 
 INPUTS
 */
 
@@ -347,34 +327,4 @@ differently and value needs to be different.
   .country-select-wrapper {
     bottom: 0.3rem;
   }
-}
-
-/* 
-CONSENT CHECKBOX
-*/
-
-.consent-container {
-  margin-top: 4.5rem;
-}
-
-.consent-label {
-  font-size: 1.6rem;
-  margin-left: 1.6rem;
-}
-
-/* 
-SUBMISSION 
-*/
-
-.submission-result {
-  font-size: 1.6rem;
-  margin-bottom: 3.25rem;
-}
-
-.submission-result-error {
-  color: var(--error-color);
-}
-
-.submission-result-success {
-  color: var(--success-color);
 }
